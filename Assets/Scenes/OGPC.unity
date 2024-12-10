@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &198918388 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 82a3d002462339f48882e9875352d953, type: 3}
+  m_PrefabInstance: {fileID: 1110733384}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &615354338
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,14 +473,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 903530897}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.980781, y: -1.91, z: -7.108867}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.9903905, y: -0.955, z: -3.5544336}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1139985016}
   - {fileID: 1691397618}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 198918388}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1110733384
 PrefabInstance:
@@ -555,7 +560,10 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 7879e88373677f64fbb2cf4f9bd1179a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 82a3d002462339f48882e9875352d953, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 903530898}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82a3d002462339f48882e9875352d953, type: 3}
 --- !u!1 &1139985012
@@ -1182,5 +1190,4 @@ SceneRoots:
   - {fileID: 1419097434}
   - {fileID: 1465775405}
   - {fileID: 1929824971}
-  - {fileID: 903530898}
   - {fileID: 1110733384}
