@@ -546,6 +546,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -3542852092398272455, guid: 82a3d002462339f48882e9875352d953, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: m_Name
       value: ship
@@ -564,6 +568,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 82a3d002462339f48882e9875352d953, type: 3}
       insertIndex: -1
       addedObject: {fileID: 903530898}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 82a3d002462339f48882e9875352d953, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1419097434}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82a3d002462339f48882e9875352d953, type: 3}
 --- !u!1 &1139985012
@@ -730,13 +737,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1419097431}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 625564389}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 198918388}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1465775403
 GameObject:
@@ -1187,7 +1194,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1575725360}
   - {fileID: 615354340}
-  - {fileID: 1419097434}
   - {fileID: 1465775405}
   - {fileID: 1929824971}
   - {fileID: 1110733384}
