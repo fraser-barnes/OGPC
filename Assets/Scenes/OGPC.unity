@@ -5827,11 +5827,11 @@ PrefabInstance:
     - target: {fileID: 6317578925029434746, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: ce7c57ce1afeef24288aabd9ba1a592c, type: 2}
+      objectReference: {fileID: 2100000, guid: 32d419b55d40a214ebcdebb31f5cb7eb, type: 2}
     - target: {fileID: 8100320773420232829, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 7879e88373677f64fbb2cf4f9bd1179a, type: 2}
+      objectReference: {fileID: -382652638819485698, guid: 82a3d002462339f48882e9875352d953, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
