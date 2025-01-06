@@ -2,6 +2,10 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
+/[Aa]ssets/Oculus/
+/[Aa]ssets/[Rr]esources/OculusRuntimeSettings.asset
+/[Aa]ssets/[Rr]esources/OculusRuntimeSettings.asset.meta
+/[Aa]ssets/XR/Settings/OpenXR Package Settings.asset
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
