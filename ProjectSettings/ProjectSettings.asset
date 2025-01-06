@@ -822,8 +822,8 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   scriptingDefineSymbols:
-    Android: META_USE_STICK_CONTROL_THUMBSTICKS
-    Standalone: META_USE_STICK_CONTROL_THUMBSTICKS
+    Android: META_USE_STICK_CONTROL_THUMBSTICKS;ISDK_OPENXR_HAND
+    Standalone: META_USE_STICK_CONTROL_THUMBSTICKS;ISDK_OPENXR_HAND
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
