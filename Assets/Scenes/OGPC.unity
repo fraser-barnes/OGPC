@@ -5849,6 +5849,11 @@ PrefabInstance:
       addedObject: {fileID: 1570972405}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82a3d002462339f48882e9875352d953, type: 3}
+--- !u!1 &1110733385 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 82a3d002462339f48882e9875352d953, type: 3}
+  m_PrefabInstance: {fileID: 1110733384}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1112281411
 GameObject:
   m_ObjectHideFlags: 0
@@ -10513,6 +10518,7 @@ GameObject:
   - component: {fileID: 1929824973}
   - component: {fileID: 1929824972}
   - component: {fileID: 1929824975}
+  - component: {fileID: 1929824976}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -10622,6 +10628,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+--- !u!114 &1929824976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929824970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2ea522f1df8641e099b9a0c512b66ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  ship: {fileID: 1110733385}
 --- !u!1 &1931157137
 GameObject:
   m_ObjectHideFlags: 0
