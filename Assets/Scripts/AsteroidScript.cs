@@ -10,17 +10,17 @@ public class AsteroidScript : MonoBehaviour
     
     void Awake(){
          // Get the ship's x position and add a random offset
-        xTarget = (transform.position.x - ship.transform.position.x) + Random.Range(-30f, 31f); 
+        xTarget = 1.5f*((transform.position.x - ship.transform.position.x) + Random.Range(-10f, 11f)); 
         // Get the ship's y position and add a random offset
-        yTarget = (transform.position.y - ship.transform.position.y) + Random.Range(-30f, 31f); 
+        yTarget = 1.5f*((transform.position.y - ship.transform.position.y) + Random.Range(-10f, 11f)); 
         // Get the ship's z position and add a random offset
-        zTarget = (transform.position.z - ship.transform.position.z) + Random.Range(-30f, 31f); 
+        zTarget = 1.5f*((transform.position.z - ship.transform.position.z) + Random.Range(-10f, 11f)); 
     }
     
     void Update()
     {
         lifetime += Time.deltaTime;
-        if (lifetime > 5)
+        if (lifetime > 3)
         {
             lifetime = 0;
             gameObject.SetActive(false);
@@ -28,6 +28,6 @@ public class AsteroidScript : MonoBehaviour
         }
         
         Vector3 targetPosition = new Vector3(xTarget, yTarget, zTarget);
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, 250*Time.deltaTime); 
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, 2000*Time.deltaTime); 
     }
 }
