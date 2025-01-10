@@ -5,9 +5,11 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class SpaceshipController : MonoBehaviour
 {
     public GameObject mover; // The joystick-like object
-    public float moveSpeed = 500f; // Movement speed
+    public float moveSpeed = 500f; // Movement speed for the spaceship
     public float rotationSpeed = 50f; // Rotation speed
     public Transform spaceship; // Reference to the spaceship transform
+    public float moverSensitivity = 2f; // Sensitivity for keyboard input on the mover
+    public float snapBackSpeed = 5f; // Speed at which the mover snaps back
 
     private Vector3 initialMoverPosition;
     private XRController rightHandController;
@@ -30,9 +32,34 @@ public class SpaceshipController : MonoBehaviour
 
     void Update()
     {
+        HandleMoverInput();
         HandleMovement();
         HandleRotation();
     }
+
+    void HandleMoverInput()
+{
+    // Get keyboard input for WASD movement
+    float inputWASD_X = Input.GetAxis("Horizontal"); // A/D or Left/Right arrows
+    float inputWASD_Z = Input.GetAxis("Vertical");   // W/S or Up/Down arrows
+
+    // Correct the movement to align with the spaceship's coordinate system
+    Vector3 correctedMovement = new Vector3(inputWASD_Z, 0, -inputWASD_X) * moverSensitivity * Time.deltaTime;
+
+    // Update the mover's position based on the corrected movement
+    mover.transform.localPosition += correctedMovement;
+
+    // Clamp the mover's position to ensure it doesn't move too far
+    mover.transform.localPosition = new Vector3(
+        Mathf.Clamp(mover.transform.localPosition.x, initialMoverPosition.x - 0.5f, initialMoverPosition.x + 0.5f),
+        initialMoverPosition.y,
+        Mathf.Clamp(mover.transform.localPosition.z, initialMoverPosition.z - 0.5f, initialMoverPosition.z + 0.5f)
+    );
+
+    // Optional: Debugging for movement
+    Debug.Log($"Mover Position: {mover.transform.localPosition}");
+}
+
 
     void HandleMovement()
     {
@@ -40,7 +67,7 @@ public class SpaceshipController : MonoBehaviour
         Vector3 offset = mover.transform.localPosition - initialMoverPosition;
 
         // Scale the offset to movement
-        Vector3 movement = new Vector3(offset.x, 0, offset.z) * moveSpeed * Time.deltaTime;
+        Vector3 movement = new Vector3(-offset.z, 0, offset.x) * moveSpeed * Time.deltaTime;
 
         // Apply movement to the spaceship
         spaceship.Translate(movement, Space.World);
@@ -49,7 +76,7 @@ public class SpaceshipController : MonoBehaviour
         mover.transform.localPosition = Vector3.Lerp(
             mover.transform.localPosition, 
             initialMoverPosition, 
-            Time.deltaTime * 5f // Smooth snapping
+            Time.deltaTime * snapBackSpeed // Smooth snapping
         );
     }
 
@@ -57,7 +84,7 @@ public class SpaceshipController : MonoBehaviour
     {
         if (rightHandController != null)
         {
-            // Get joystick input from the right hand controller
+            // Get joystick input from the right-hand controller
             rightHandController.inputDevice.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 rotationInput);
 
             // Apply rotation based on joystick input
