@@ -67,7 +67,7 @@ public class SpaceshipController : MonoBehaviour
         Vector3 offset = mover.transform.localPosition - initialMoverPosition;
 
         // Scale the offset to movement
-        Vector3 movement = new Vector3(offset.z, 0, offset.x) * moveSpeed * Time.deltaTime;
+        Vector3 movement = new Vector3(-offset.z, 0, offset.x) * moveSpeed * Time.deltaTime;
 
         // Apply movement to the spaceship
         spaceship.Translate(movement, Space.World);
