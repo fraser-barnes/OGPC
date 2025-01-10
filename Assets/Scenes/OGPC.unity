@@ -6806,10 +6806,18 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -4683669308469848369, guid: 82a3d002462339f48882e9875352d953, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: dd12ba19b9dd17647a3447aff45dc81d, type: 2}
     - target: {fileID: -3542852092398272455, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1461304994638716399, guid: 82a3d002462339f48882e9875352d953, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: dd12ba19b9dd17647a3447aff45dc81d, type: 2}
     - target: {fileID: -678588488315902003, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
