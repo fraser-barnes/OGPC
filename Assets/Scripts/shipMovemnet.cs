@@ -5,9 +5,11 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class SpaceshipController : MonoBehaviour
 {
     public GameObject mover; // The joystick-like object
-    public float moveSpeed = 500f; // Movement speed
+    public float moveSpeed = 500f; // Movement speed for the spaceship
     public float rotationSpeed = 50f; // Rotation speed
     public Transform spaceship; // Reference to the spaceship transform
+    public float moverSensitivity = 1f; // Sensitivity for keyboard input on the mover
+    public float snapBackSpeed = 5f; // Speed at which the mover snaps back
 
     private Vector3 initialMoverPosition;
     private XRController rightHandController;
@@ -30,8 +32,29 @@ public class SpaceshipController : MonoBehaviour
 
     void Update()
     {
+        HandleMoverInput();
         HandleMovement();
         HandleRotation();
+    }
+
+    void HandleMoverInput()
+    {
+        // Get keyboard input for WASD movement
+        float inputWASD_X = Input.GetAxis("Horizontal"); // A/D or Left/Right arrows
+        float inputWASD_Y = Input.GetAxis("Vertical");   // W/S or Up/Down arrows
+
+        // Remap WASD input to the correct axis in your game world
+        Vector3 correctedMovement = new Vector3(inputWASD_Y, 0, -inputWASD_X) * moverSensitivity * Time.deltaTime;
+
+        // Update the mover's position based on the corrected movement
+        mover.transform.localPosition += correctedMovement;
+
+        // Clamp the mover's position to a specific range (if needed)
+        mover.transform.localPosition = new Vector3(
+            Mathf.Clamp(mover.transform.localPosition.x, initialMoverPosition.x - 0.5f, initialMoverPosition.x + 0.5f),
+            initialMoverPosition.y,
+            Mathf.Clamp(mover.transform.localPosition.z, initialMoverPosition.z - 0.5f, initialMoverPosition.z + 0.5f)
+        );
     }
 
     void HandleMovement()
@@ -49,7 +72,7 @@ public class SpaceshipController : MonoBehaviour
         mover.transform.localPosition = Vector3.Lerp(
             mover.transform.localPosition, 
             initialMoverPosition, 
-            Time.deltaTime * 5f // Smooth snapping
+            Time.deltaTime * snapBackSpeed // Smooth snapping
         );
     }
 
