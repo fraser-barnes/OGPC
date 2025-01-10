@@ -8,7 +8,7 @@ public class SpaceshipController : MonoBehaviour
     public float moveSpeed = 500f; // Movement speed for the spaceship
     public float rotationSpeed = 50f; // Rotation speed
     public Transform spaceship; // Reference to the spaceship transform
-    public float moverSensitivity = 1f; // Sensitivity for keyboard input on the mover
+    public float moverSensitivity = 2f; // Sensitivity for keyboard input on the mover
     public float snapBackSpeed = 5f; // Speed at which the mover snaps back
 
     private Vector3 initialMoverPosition;
@@ -41,10 +41,10 @@ public class SpaceshipController : MonoBehaviour
 {
     // Get keyboard input for WASD movement
     float inputWASD_X = Input.GetAxis("Horizontal"); // A/D or Left/Right arrows
-    float inputWASD_Y = Input.GetAxis("Vertical");   // W/S or Up/Down arrows
+    float inputWASD_Z = Input.GetAxis("Vertical");   // W/S or Up/Down arrows
 
     // Correct the movement to align with the spaceship's coordinate system
-    Vector3 correctedMovement = new Vector3(inputWASD_Y, 0, -inputWASD_X) * moverSensitivity * Time.deltaTime;
+    Vector3 correctedMovement = new Vector3(inputWASD_Z, 0, -inputWASD_X) * moverSensitivity * Time.deltaTime;
 
     // Update the mover's position based on the corrected movement
     mover.transform.localPosition += correctedMovement;
