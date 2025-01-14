@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
-
+//61.31º
 public class SpaceshipController : MonoBehaviour
 {
     public GameObject mover; // The joystick-like object
@@ -79,6 +79,7 @@ public class SpaceshipController : MonoBehaviour
             Time.deltaTime * snapBackSpeed // Smooth snapping
         );
     }
+    
 
     void HandleRotation()
     {
