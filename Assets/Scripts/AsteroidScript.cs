@@ -20,14 +20,14 @@ public class AsteroidScript : MonoBehaviour
     void Update()
     {
         lifetime += Time.deltaTime;
-        if (lifetime > 3)
+        if (lifetime > 5)
         {
             lifetime = 0;
             gameObject.SetActive(false);
             
         }
         
-        Vector3 targetPosition = new Vector3(xTarget, yTarget, zTarget);
+        Vector3 targetPosition = new Vector3(transform.position.x - xTarget, transform.position.y - yTarget, transform.position.z -zTarget);
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, 2000*Time.deltaTime); 
     }
 }
