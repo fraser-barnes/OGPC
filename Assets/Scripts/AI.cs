@@ -5,25 +5,30 @@ public class AI : MonoBehaviour
     AudioSource audioSource;
     AudioClip[] clips;
     float[] spectrum = new float[128];
+    [SerializeField]
+    Transform[] circles;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        transform.localScale = new Vector3(1.01f, 0.01f, 1.01f);
     }
 
     void Update()
     {
         audioSource.GetSpectrumData(spectrum, 0, FFTWindow.BlackmanHarris);
-        if (spectrum != null && spectrum.Length > 0)
+        for (int i = 0; i < circles.Length; i++)
         {
-            float l = Mathf.Pow(spectrum[0] * 30,0.4f) + 0.01f;
-            if (l <= 1f)
-                transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1.01f, l, 1.01f), Time.deltaTime * 10f);
-            else
-                transform.localScale = new Vector3(1.01f, 1f, 1.01f);
+            if (spectrum != null && spectrum.Length > 0)
+            {
+                float l = Mathf.Pow(spectrum[(i + 1) * 10] * 500,0.2f) + 0.5f;
+                if (l <= 5f)
+                    circles[i].localScale = Vector3.Lerp(circles[i].localScale, new Vector3(0.5f, l, 1f), Time.deltaTime * 30f);
+                else
+                    circles[i].localScale = new Vector3(0.5f, 0.5f, 1f);
+            }
         }
+
     }
 
     public void Talk(AudioClip clip)
