@@ -16703,6 +16703,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 82a3d002462339f48882e9875352d953, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1110733390}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 82a3d002462339f48882e9875352d953, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1110733391}
     - targetCorrespondingSourceObject: {fileID: -1018664272722485354, guid: 82a3d002462339f48882e9875352d953, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1381987449}
@@ -16748,14 +16751,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7fb6330bd8247028d2f93b57b57b9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mover: {fileID: 1570972404}
-  moveSpeed: 500
-  rotationSpeed: 50
-  spaceship: {fileID: 198918388}
-  moverSensitivity: 2
-  snapBackSpeed: 5
-  initialMoverPosition: {x: 0, y: 0, z: 0}
-  rightHandController: {fileID: 0}
 --- !u!114 &1110733388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16794,7 +16789,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0
+  m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -16811,6 +16806,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1110733391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110733385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b7af540ba41f4a1cbdbc8d705d5b147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mover: {fileID: 1570972404}
+  moveSpeed: 500
+  rotationSpeed: 50
+  spaceship: {fileID: 198918388}
+  moverSensitivity: 2
+  snapBackSpeed: 5
 --- !u!1 &1112281411
 GameObject:
   m_ObjectHideFlags: 0
