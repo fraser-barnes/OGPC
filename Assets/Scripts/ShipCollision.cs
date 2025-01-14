@@ -10,6 +10,8 @@ public class ShipCollision : MonoBehaviour
        // Check if the collision is with an asteroid
        if (collision.gameObject.CompareTag("Asteroid"))
        {
+
+         Debug.Log("collided"); // Print to the console
            // Call the TakeDamage method on the ShipHealth script
            if (shipHealth != null)
            {
@@ -18,6 +20,7 @@ public class ShipCollision : MonoBehaviour
 
            // Optionally, destroy the asteroid
            Destroy(collision.gameObject);
+
        }
    }
 
@@ -26,6 +29,8 @@ public class ShipCollision : MonoBehaviour
        // Alternatively, handle trigger collisions if using trigger colliders
        if (other.CompareTag("Asteroid"))
        {
+
+         Debug.Log("collided"); // Print to the console
            if (shipHealth != null)
            {
                shipHealth.TakeDamage(damageAmount);
