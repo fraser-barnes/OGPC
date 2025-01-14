@@ -1,17 +1,15 @@
 using UnityEngine;
-using Oculus.Platform;
-using Oculus.Platform.Models;
 
 public class SpaceshipController : MonoBehaviour
 {
     public GameObject mover; // The joystick-like object
     public float moveSpeed = 500f; // Movement speed for the spaceship
-    public float rotationSpeed = 50f; // Rotation speed
+    public float rotationSpeed = 50f; // Rotation speed for controller input
     public Transform spaceship; // Reference to the spaceship transform
     public float moverSensitivity = 2f; // Sensitivity for mover input
     public float snapBackSpeed = 5f; // Speed at which the mover snaps back
 
-    private Vector3 initialMoverPositionLocal; // Mover position relative to spaceship
+    private Vector3 initialMoverPositionLocal; // Mover position relative to the spaceship
 
     void Start()
     {
@@ -24,87 +22,85 @@ public class SpaceshipController : MonoBehaviour
 
         // Store the initial local position of the mover
         initialMoverPositionLocal = spaceship.InverseTransformPoint(mover.transform.position);
-
-        // Ensure the OVRCameraRig is in the scene
-        OVRCameraRig cameraRig = FindObjectOfType<OVRCameraRig>();
-        if (cameraRig == null)
-        {
-            Debug.LogError("OVRCameraRig not found. Please ensure it's added to the scene.");
-            enabled = false;
-            return;
-        }
     }
 
     void Update()
     {
         HandleMoverInput();
-        HandleMovement();
+        HandleThrust();
         HandleRotation();
     }
 
     void HandleMoverInput()
+{
+    // Get input for movement (joystick or keyboard)
+    Vector2 input = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
+    if (input == Vector2.zero)
     {
-        // Get thumbstick input from the right-hand controller
-        Vector2 thumbstickInput = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
-
-        // Fallback to arrow keys for desktop debugging
-        if (thumbstickInput == Vector2.zero)
-        {
-            thumbstickInput.x = Input.GetAxis("Horizontal"); // Left/right arrow keys
-            thumbstickInput.y = Input.GetAxis("Vertical");   // Up/down arrow keys
-        }
-
-        // Correct the movement to align with the spaceship's local coordinate system
-        Vector3 correctedMovement = spaceship.TransformDirection(new Vector3(thumbstickInput.y, 0, -thumbstickInput.x)) 
-                                    * moverSensitivity * Time.deltaTime;
-
-        // Update the mover's position relative to the spaceship
-        mover.transform.position += correctedMovement;
-
-        // Clamp the mover's position relative to the spaceship
-        Vector3 localMoverPosition = spaceship.InverseTransformPoint(mover.transform.position);
-        localMoverPosition = new Vector3(
-            Mathf.Clamp(localMoverPosition.x, initialMoverPositionLocal.x - 0.5f, initialMoverPositionLocal.x + 0.5f),
-            initialMoverPositionLocal.y,
-            Mathf.Clamp(localMoverPosition.z, initialMoverPositionLocal.z - 0.5f, initialMoverPositionLocal.z + 0.5f)
-        );
-
-        // Update mover's world position after clamping
-        mover.transform.position = spaceship.TransformPoint(localMoverPosition);
+        input.x = Input.GetAxis("Horizontal"); // A/D or Left/Right
+        input.y = Input.GetAxis("Vertical");   // W/S or Up/Down
     }
 
-    void HandleMovement()
-    {
-        // Calculate offset from the initial local position
-        Vector3 localOffset = spaceship.InverseTransformPoint(mover.transform.position) - initialMoverPositionLocal;
+    // Convert input into local space movement
+    Vector3 localMovement = new Vector3(input.x, 0, input.y) * moverSensitivity * Time.deltaTime;
 
-        // Scale the offset to movement
-        Vector3 movement = new Vector3(-localOffset.z, 0, localOffset.x) * moveSpeed * Time.deltaTime;
+    // Transform local movement to world space based on spaceship's orientation
+    Vector3 worldMovement = spaceship.TransformDirection(localMovement);
 
-        // Apply movement to the spaceship
-        spaceship.Translate(movement, Space.World);
+    // Move the orb in world space
+    mover.transform.position += worldMovement;
 
-        // Snap the mover back to its initial local position smoothly
-        Vector3 snappedLocalPosition = Vector3.Lerp(
-            spaceship.InverseTransformPoint(mover.transform.position),
-            initialMoverPositionLocal,
-            Time.deltaTime * snapBackSpeed
-        );
+    // Clamp the orb's position relative to the ship in local space
+    Vector3 localMoverPosition = spaceship.InverseTransformPoint(mover.transform.position);
+    localMoverPosition = new Vector3(
+        Mathf.Clamp(localMoverPosition.x, initialMoverPositionLocal.x - 0.5f, initialMoverPositionLocal.x + 0.5f),
+        initialMoverPositionLocal.y,
+        Mathf.Clamp(localMoverPosition.z, initialMoverPositionLocal.z - 0.5f, initialMoverPositionLocal.z + 0.5f)
+    );
 
-        // Update the mover's world position after snapping
-        mover.transform.position = spaceship.TransformPoint(snappedLocalPosition);
-    }
+    // Apply the clamped position back to world space
+    mover.transform.position = spaceship.TransformPoint(localMoverPosition);
+
+    // Debug log to verify positions
+    Debug.Log($"Orb World Position: {mover.transform.position} | Local Position: {localMoverPosition}");
+}
+
+
+void HandleThrust()
+{
+    // Calculate thrust based on mover's local offset
+    Vector3 localOffset = spaceship.InverseTransformPoint(mover.transform.position) - initialMoverPositionLocal;
+
+    // WASD fallback input for thrust
+    float thrustX = Input.GetAxis("Horizontal");
+    float thrustZ = Input.GetAxis("Vertical");
+
+    // Combine mover offset and WASD input
+    Vector3 thrustDirection = new Vector3(
+        localOffset.x + thrustX, 
+        0, 
+        localOffset.z + thrustZ
+    );
+
+    // Scale and apply thrust to spaceship
+    Vector3 movement = thrustDirection * moveSpeed * Time.deltaTime;
+    spaceship.Translate(movement, Space.World);
+
+    // Smooth snap the mover back to its initial position
+    Vector3 snappedLocalPosition = Vector3.Lerp(
+        spaceship.InverseTransformPoint(mover.transform.position),
+        initialMoverPositionLocal,
+        Time.deltaTime * (snapBackSpeed / 2) // Lower snap speed for visibility
+    );
+
+    // Apply snapped position back to mover
+    mover.transform.position = spaceship.TransformPoint(snappedLocalPosition);
+}
 
     void HandleRotation()
     {
         // Get thumbstick input for rotation
         Vector2 rotationInput = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
-
-        // Fallback to arrow keys for desktop debugging (rotation)
-        if (rotationInput == Vector2.zero)
-        {
-            rotationInput.x = Input.GetAxis("Horizontal"); // Left/right arrow keys
-        }
 
         // Apply rotation based on input
         Vector3 rotation = new Vector3(0, rotationInput.x * rotationSpeed * Time.deltaTime, 0);
