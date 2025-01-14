@@ -21,11 +21,11 @@ public class AI : MonoBehaviour
         {
             if (spectrum != null && spectrum.Length > 0)
             {
-                float l = Mathf.Pow(spectrum[(i + 1) * 10] * 500,0.2f) + 0.5f;
+                float l = Mathf.Pow(spectrum[(i + 1) * 6] * 400,0.2f) + 1.01f;
                 if (l <= 5f)
-                    circles[i].localScale = Vector3.Lerp(circles[i].localScale, new Vector3(0.5f, l, 1f), Time.deltaTime * 30f);
+                    circles[i].localScale = Vector3.Lerp(circles[i].localScale, new Vector3(l, 0.015f, l), Time.deltaTime * 30f);
                 else
-                    circles[i].localScale = new Vector3(0.5f, 0.5f, 1f);
+                    circles[i].localScale = new Vector3(1.01f, 0.015f, 1.01f);
             }
         }
 
