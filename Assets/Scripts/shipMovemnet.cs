@@ -1,8 +1,7 @@
 using UnityEngine;
-using Oculus.Platform; // For Oculus SDK (optional, for platform features)
-using Oculus.Platform.Models; // For Oculus models (optional)
+using Oculus.Platform;
+using Oculus.Platform.Models;
 
-//61.31º
 public class SpaceshipController : MonoBehaviour
 {
     public GameObject mover; // The joystick-like object
@@ -47,6 +46,13 @@ public class SpaceshipController : MonoBehaviour
     {
         // Get thumbstick input from the right-hand controller
         Vector2 thumbstickInput = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
+
+        // Fallback to arrow keys for desktop debugging
+        if (thumbstickInput == Vector2.zero)
+        {
+            thumbstickInput.x = Input.GetAxis("Horizontal"); // Left/right arrow keys
+            thumbstickInput.y = Input.GetAxis("Vertical");   // Up/down arrow keys
+        }
 
         // Correct the movement to align with the spaceship's local coordinate system
         Vector3 correctedMovement = spaceship.TransformDirection(new Vector3(thumbstickInput.y, 0, -thumbstickInput.x)) 
@@ -94,7 +100,13 @@ public class SpaceshipController : MonoBehaviour
         // Get thumbstick input for rotation
         Vector2 rotationInput = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
 
-        // Apply rotation based on joystick input
+        // Fallback to arrow keys for desktop debugging (rotation)
+        if (rotationInput == Vector2.zero)
+        {
+            rotationInput.x = Input.GetAxis("Horizontal"); // Left/right arrow keys
+        }
+
+        // Apply rotation based on input
         Vector3 rotation = new Vector3(0, rotationInput.x * rotationSpeed * Time.deltaTime, 0);
         spaceship.Rotate(rotation, Space.Self);
     }
