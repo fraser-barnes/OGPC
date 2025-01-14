@@ -5682,8 +5682,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 157.9, y: -120.2}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 410.1, y: -235.7}
+  m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &841075671
 MonoBehaviour:
@@ -6868,10 +6868,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -7317,7 +7317,7 @@ Canvas:
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_TargetDisplay: 0
+  m_TargetDisplay: 1
 --- !u!224 &1053505144
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7808,6 +7808,42 @@ PrefabInstance:
     - target: {fileID: -3542852092398272455, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2021178655527167927, guid: 82a3d002462339f48882e9875352d953, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.04
+      objectReference: {fileID: 0}
+    - target: {fileID: -2021178655527167927, guid: 82a3d002462339f48882e9875352d953, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.74
+      objectReference: {fileID: 0}
+    - target: {fileID: -2021178655527167927, guid: 82a3d002462339f48882e9875352d953, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7061666
+      objectReference: {fileID: 0}
+    - target: {fileID: -2021178655527167927, guid: 82a3d002462339f48882e9875352d953, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.036452502
+      objectReference: {fileID: 0}
+    - target: {fileID: -2021178655527167927, guid: 82a3d002462339f48882e9875352d953, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7061666
+      objectReference: {fileID: 0}
+    - target: {fileID: -2021178655527167927, guid: 82a3d002462339f48882e9875352d953, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.036452502
+      objectReference: {fileID: 0}
+    - target: {fileID: -2021178655527167927, guid: 82a3d002462339f48882e9875352d953, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 5.91
+      objectReference: {fileID: 0}
+    - target: {fileID: -2021178655527167927, guid: 82a3d002462339f48882e9875352d953, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -1853094968961178454, guid: 82a3d002462339f48882e9875352d953, type: 3}
+      propertyPath: m_TargetDisplay
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -1461304994638716399, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
