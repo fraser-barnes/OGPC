@@ -8014,8 +8014,8 @@ MonoBehaviour:
   moveSpeed: 500
   rotationSpeed: 50
   spaceship: {fileID: 198918388}
-  moverSensitivity: 2
-  snapBackSpeed: 5
+  moverSensitivity: 50
+  snapBackSpeed: 10
 --- !u!1 &1112281411
 GameObject:
   m_ObjectHideFlags: 0
