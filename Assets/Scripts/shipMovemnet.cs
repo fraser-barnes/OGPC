@@ -1,3 +1,5 @@
+using System;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 
 public class SpaceshipController : MonoBehaviour
@@ -43,7 +45,7 @@ public class SpaceshipController : MonoBehaviour
     }
 
     // Convert input into local space movement
-    Vector3 localMovement = new Vector3(input.x, 0, input.y) * moverSensitivity * Time.deltaTime;
+    Vector3 localMovement = new Vector3(input.x, input.y*Mathf.Tan((float)28.81), input.y/Mathf.Cos((float)28.81)) * moverSensitivity * Time.deltaTime;
 
     // Transform local movement to world space based on spaceship's orientation
     Vector3 worldMovement = spaceship.TransformDirection(localMovement);
