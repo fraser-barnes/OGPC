@@ -40,12 +40,21 @@ public class SpaceshipController : MonoBehaviour
     Vector2 input = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
     if (input == Vector2.zero)
     {
-        input.y = -Input.GetAxis("Horizontal"); // A/D or Left/Right
-        input.x = Input.GetAxis("Vertical");   // W/S or Up/Down
+        input.x = -Input.GetAxis("Horizontal"); // A/D or Left/Right
+        input.y = Input.GetAxis("Vertical");   // W/S or Up/Down
     }
 
-    // Convert input into local space movement
-    Vector3 localMovement = new Vector3(input.x, input.y*Mathf.Tan((float)28.81), input.y/Mathf.Cos((float)28.81)) * moverSensitivity * Time.deltaTime;
+    // Angle of the desk in radians
+    float deskAngleRadians = Mathf.Deg2Rad * 28.81f;
+
+    // Convert input into movement relative to the desk's plane
+    float forwardMovementZ = input.y / Mathf.Cos(deskAngleRadians); // Forward movement adjusted for tilt
+    float upwardMovementY = input.y * Mathf.Tan(deskAngleRadians);  // Vertical adjustment for tilt
+    Vector3 localMovement = new Vector3(
+        forwardMovementZ,                  // Horizontal movement stays as is
+        upwardMovementY,          // Adjusted upward movement
+        input.x          // Adjusted forward movement
+    ) * moverSensitivity * Time.deltaTime;
 
     // Transform local movement to world space based on spaceship's orientation
     Vector3 worldMovement = spaceship.TransformDirection(localMovement);
@@ -57,7 +66,7 @@ public class SpaceshipController : MonoBehaviour
     Vector3 localMoverPosition = spaceship.InverseTransformPoint(mover.transform.position);
     localMoverPosition = new Vector3(
         Mathf.Clamp(localMoverPosition.x, initialMoverPositionLocal.x - 0.5f, initialMoverPositionLocal.x + 0.5f),
-        initialMoverPositionLocal.y,
+        localMoverPosition.y, // Allow vertical movement on the desk plane
         Mathf.Clamp(localMoverPosition.z, initialMoverPositionLocal.z - 0.5f, initialMoverPositionLocal.z + 0.5f)
     );
 
