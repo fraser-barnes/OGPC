@@ -3,7 +3,7 @@ using UnityEngine;
 public class SpaceshipController : MonoBehaviour
 {
     //28.81
-    public GameObject mover; // The joystick-like object
+    public GameObject mover; // The orb object
     public float moveSpeed = 500f; // Movement speed for the spaceship
     public float rotationSpeed = 50f; // Rotation speed for controller input
     public Transform spaceship; // Reference to the spaceship transform
@@ -38,8 +38,8 @@ public class SpaceshipController : MonoBehaviour
     Vector2 input = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
     if (input == Vector2.zero)
     {
-        input.x = Input.GetAxis("Horizontal"); // A/D or Left/Right
-        input.y = Input.GetAxis("Vertical");   // W/S or Up/Down
+        input.y = -Input.GetAxis("Horizontal"); // A/D or Left/Right
+        input.x = Input.GetAxis("Vertical");   // W/S or Up/Down
     }
 
     // Convert input into local space movement
