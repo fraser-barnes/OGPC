@@ -7842,6 +7842,10 @@ PrefabInstance:
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -1853094968961178454, guid: 82a3d002462339f48882e9875352d953, type: 3}
+      propertyPath: far clip plane
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: -1853094968961178454, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: m_TargetDisplay
       value: 1
       objectReference: {fileID: 0}
@@ -8010,8 +8014,8 @@ MonoBehaviour:
   moveSpeed: 500
   rotationSpeed: 50
   spaceship: {fileID: 198918388}
-  moverSensitivity: 2
-  snapBackSpeed: 5
+  moverSensitivity: 50
+  snapBackSpeed: 10
 --- !u!1 &1112281411
 GameObject:
   m_ObjectHideFlags: 0
@@ -14327,7 +14331,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1929824971
 Transform:
   m_ObjectHideFlags: 0
