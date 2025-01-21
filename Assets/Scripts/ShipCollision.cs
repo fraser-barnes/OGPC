@@ -19,7 +19,7 @@ public class ShipCollision : MonoBehaviour
            }
 
            // Optionally, destroy the asteroid
-           collision.gameObject.SetActive(false);
+          // collision.gameObject.SetActive(false);
 
        }
    }
@@ -36,7 +36,7 @@ public class ShipCollision : MonoBehaviour
                shipHealth.TakeDamage(damageAmount);
            }
 
-           other.gameObject.SetActive(false);
+           //other.gameObject.SetActive(false);
        }
    }
 }
