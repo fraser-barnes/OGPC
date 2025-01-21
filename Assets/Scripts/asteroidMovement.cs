@@ -8,7 +8,6 @@ public class AsteroidMovement : MonoBehaviour
 
     void Awake()
     {
-
     }
 
     void Update()
@@ -17,7 +16,7 @@ public class AsteroidMovement : MonoBehaviour
         for(int n=0; n < asteroidArr.Length; n++){
             if(!asteroidArr[n].activeInHierarchy && asteroidCooldown > (20f/11f)){
                 asteroidCooldown = 0;
-                asteroidArr[n].transform.position = new Vector3(Random.Range(transform.position.x-3000, transform.position.x+3001), Random.Range(transform.position.y-3000f, transform.position.y+3001f), Random.Range(transform.position.z+5000, transform.position.z+7001));
+                asteroidArr[n].transform.position = new Vector3(Random.Range(transform.position.x-5000, transform.position.x+5001), Random.Range(transform.position.y-5000f, transform.position.y+5001f), Random.Range(transform.position.z+6000, transform.position.z+8001));
                 asteroidArr[n].SetActive(true);
                 currentAsteroid = asteroidArr[n];
                 break;

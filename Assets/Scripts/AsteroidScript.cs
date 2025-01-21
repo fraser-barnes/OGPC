@@ -7,7 +7,7 @@ public class AsteroidScript : MonoBehaviour
     private Vector3 movementDirection; // Current movement direction of the asteroid
     private float speed = 500f; // Speed of the asteroid
     private float deflectionDampening = 0.5f; // Reduces momentum after deflection
-    private float randomOffsetRange = 100f; // Range for random offset
+    private float randomOffsetRange = 500f; // Range for random offset
 
     void OnEnable()
     {
