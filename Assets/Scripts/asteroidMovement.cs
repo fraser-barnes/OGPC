@@ -5,7 +5,7 @@ public class AsteroidMovement : MonoBehaviour
     public GameObject[] asteroidArr;
     private GameObject currentAsteroid;
     private float asteroidCooldown;
-    
+
     void Awake()
     {
 
@@ -23,6 +23,6 @@ public class AsteroidMovement : MonoBehaviour
                 break;
             }
         }
-       
+
     }
 }
