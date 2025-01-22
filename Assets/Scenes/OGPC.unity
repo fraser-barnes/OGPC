@@ -14,10 +14,10 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0, g: 0, b: 0, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.0001
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -7948,39 +7948,55 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2021178655527167927, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.74
+      value: 0.71
       objectReference: {fileID: 0}
     - target: {fileID: -2021178655527167927, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7061666
+      value: 0.700396
       objectReference: {fileID: 0}
     - target: {fileID: -2021178655527167927, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.036452502
+      value: 0.09718799
       objectReference: {fileID: 0}
     - target: {fileID: -2021178655527167927, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7061666
+      value: 0.700396
       objectReference: {fileID: 0}
     - target: {fileID: -2021178655527167927, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.036452502
+      value: -0.09718799
       objectReference: {fileID: 0}
     - target: {fileID: -2021178655527167927, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 5.91
+      value: 15.8
       objectReference: {fileID: 0}
     - target: {fileID: -2021178655527167927, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -1853094968961178454, guid: 82a3d002462339f48882e9875352d953, type: 3}
+      propertyPath: m_Aperture
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -1853094968961178454, guid: 82a3d002462339f48882e9875352d953, type: 3}
+      propertyPath: m_BladeCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -1853094968961178454, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: field of view
-      value: 132
+      value: 74.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -1853094968961178454, guid: 82a3d002462339f48882e9875352d953, type: 3}
+      propertyPath: m_Curvature.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: -1853094968961178454, guid: 82a3d002462339f48882e9875352d953, type: 3}
+      propertyPath: m_Curvature.y
+      value: 9.7
       objectReference: {fileID: 0}
     - target: {fileID: -1853094968961178454, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: m_FocalLength
-      value: 5.342744
+      value: 15.838098
       objectReference: {fileID: 0}
     - target: {fileID: -1853094968961178454, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: far clip plane
@@ -7994,6 +8010,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: dd12ba19b9dd17647a3447aff45dc81d, type: 2}
+    - target: {fileID: -1018664272722485354, guid: 82a3d002462339f48882e9875352d953, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -678588488315902003, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -11206,7 +11226,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2037080, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: far clip plane
-      value: 30000
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: dynamicResolutionVersion
@@ -11238,7 +11258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 20000010189485334, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: far clip plane
-      value: 30000
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 20000012175207052, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_Enabled
@@ -11246,7 +11266,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 20000012175207052, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: far clip plane
-      value: 30000
+      value: 100000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14502,7 +14522,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1929824971
 Transform:
   m_ObjectHideFlags: 0
