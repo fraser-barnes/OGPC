@@ -25,7 +25,7 @@ public class AsteroidScript : MonoBehaviour
     void Update()
     {
         lifetime += Time.deltaTime;
-        if (lifetime > 20)
+        if (lifetime > 40)
         {
             lifetime = 0;
             gameObject.SetActive(false);
