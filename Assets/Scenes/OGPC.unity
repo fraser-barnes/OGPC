@@ -7948,27 +7948,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2021178655527167927, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.71
+      value: 0.77
       objectReference: {fileID: 0}
     - target: {fileID: -2021178655527167927, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.700396
+      value: 0.69758165
       objectReference: {fileID: 0}
     - target: {fileID: -2021178655527167927, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.09718799
+      value: 0.11567151
       objectReference: {fileID: 0}
     - target: {fileID: -2021178655527167927, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.700396
+      value: 0.69758165
       objectReference: {fileID: 0}
     - target: {fileID: -2021178655527167927, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.09718799
+      value: -0.11567151
       objectReference: {fileID: 0}
     - target: {fileID: -2021178655527167927, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 15.8
+      value: 18.83
       objectReference: {fileID: 0}
     - target: {fileID: -2021178655527167927, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -7984,7 +7984,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1853094968961178454, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: field of view
-      value: 74.3
+      value: 47.5
       objectReference: {fileID: 0}
     - target: {fileID: -1853094968961178454, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: m_Curvature.x
@@ -7996,7 +7996,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1853094968961178454, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: m_FocalLength
-      value: 15.838098
+      value: 27.272074
       objectReference: {fileID: 0}
     - target: {fileID: -1853094968961178454, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: far clip plane
