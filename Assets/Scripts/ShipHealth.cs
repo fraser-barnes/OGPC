@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class ShipHealth : MonoBehaviour
 {
-    public int maxHealth = 10;
+    private int maxHealth = 100;
     private int currentHealth;
     [SerializeField]
     private Material healthBarMat;
@@ -36,7 +36,7 @@ public class ShipHealth : MonoBehaviour
 
     private void UpdateHealthBar()
     {
-        healthBarMat.mainTexture = textures[currentHealth];
+        healthBarMat.mainTexture = textures[Mathf.RoundToInt(currentHealth/10f)];
     }
 
     private void DestroyShip()
