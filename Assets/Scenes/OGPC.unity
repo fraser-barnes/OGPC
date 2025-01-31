@@ -8088,7 +8088,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ship
       objectReference: {fileID: 0}
-<<<<<<< HEAD
     - target: {fileID: 4424396828587804706, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: m_Name
       value: Base
@@ -8096,11 +8095,9 @@ PrefabInstance:
     - target: {fileID: 5233112405309087440, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: m_Name
       value: Ground
-=======
     - target: {fileID: 919132149155446097, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: m_TagString
       value: Player
->>>>>>> d7769521a5ef888894025c840408e982c056fd10
       objectReference: {fileID: 0}
     - target: {fileID: 6317578925029434746, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

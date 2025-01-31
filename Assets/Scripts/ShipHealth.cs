@@ -5,14 +5,17 @@ public class ShipHealth : MonoBehaviour
 {
     public int maxHealth = 10;
     private int currentHealth;
-    
+    [SerializeField]
+    private Material healthBarMat;
+    [SerializeField]
+    private Texture[] textures;
 
     void Start()
     {
         currentHealth = maxHealth;
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
@@ -24,7 +27,7 @@ public class ShipHealth : MonoBehaviour
         }
     }
 
-    public void Heal(float amount)
+    public void Heal(int amount)
     {
         currentHealth += amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
@@ -33,7 +36,7 @@ public class ShipHealth : MonoBehaviour
 
     private void UpdateHealthBar()
     {
-        healthBar.value = currentHealth;
+        healthBarMat.mainTexture = textures[currentHealth];
     }
 
     private void DestroyShip()
