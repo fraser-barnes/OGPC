@@ -4482,28 +4482,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1362981243}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &601434203
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1110733387}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 21126716b727e524a8f8cf96300b8e7f, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &602372634
 GameObject:
   m_ObjectHideFlags: 0
@@ -7877,9 +7855,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 82a3d002462339f48882e9875352d953, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1110733392}
-    - targetCorrespondingSourceObject: {fileID: -7146521406498821007, guid: 82a3d002462339f48882e9875352d953, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 601434203}
   m_SourcePrefab: {fileID: 100100000, guid: 82a3d002462339f48882e9875352d953, type: 3}
 --- !u!1 &1110733385 stripped
 GameObject:
@@ -7910,11 +7885,6 @@ MonoBehaviour:
   - {fileID: 1283974242}
   - {fileID: 883513520}
   - {fileID: 2051988286}
---- !u!1 &1110733387 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -7146521406498821007, guid: 82a3d002462339f48882e9875352d953, type: 3}
-  m_PrefabInstance: {fileID: 1110733384}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1110733388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7941,7 +7911,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aee5f2fabe30a499fb14023f9b7fa52e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
   healthBarMat: {fileID: 2100000, guid: ccfacc5ced68a2743b46e41c9468232e, type: 2}
   textures:
   - {fileID: 2800000, guid: 5ec9a7d6bce33bf408bf524a92fc1e63, type: 3}
