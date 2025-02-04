@@ -13,6 +13,7 @@ public class SpaceshipController : MonoBehaviour
     public float snapBackSpeed = 5f; // Speed at which the mover snaps back
     public GameObject blackHole; //black hole for position
     private Vector3 moveDirection;
+    private Vector3 targetPosition;
 
     private Vector3 initialMoverPositionLocal; // Mover position relative to the spaceship
 
@@ -27,7 +28,7 @@ public class SpaceshipController : MonoBehaviour
 
         // Store the initial local position of the mover
         initialMoverPositionLocal = spaceship.InverseTransformPoint(mover.transform.position);
-        Vector3 targetPosition = blackHole.transform.position;
+        targetPosition = blackHole.transform.position;
         moveDirection = (targetPosition - transform.position).normalized;
     }
 
@@ -36,7 +37,7 @@ public class SpaceshipController : MonoBehaviour
         HandleMoverInput();
         HandleThrust();
         HandleRotation();
-        transform.position += moveDirection * (200/(targetPosition - transform.position)) * Time.deltaTime;
+        transform.position += moveDirection * (200f/(targetPosition.magnitude - transform.position.magnitude)) * Time.deltaTime;
     }
 
     void HandleMoverInput()
