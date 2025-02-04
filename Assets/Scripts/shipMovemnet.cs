@@ -37,9 +37,15 @@ public class SpaceshipController : MonoBehaviour
         HandleMoverInput();
         HandleThrust();
         HandleRotation();
-        transform.position += moveDirection * (200f/(targetPosition.magnitude - transform.position.magnitude)) * Time.deltaTime;
+        handleBlackHole();
     }
 
+    void handleBlackHole(){
+        Vector3 direction = (targetPosition - transform.position).normalized;
+        float distance = Mathf.Max(Vector3.Distance(transform.position, targetPosition), 0.01f); // Avoid division by zero
+        float gravityForce = 30000f / distance; // Inverse distance force
+        transform.position += direction * gravityForce * Time.deltaTime;
+    }
     void HandleMoverInput()
 {
     // Get input for movement (joystick or keyboard)
