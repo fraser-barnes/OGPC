@@ -3,7 +3,7 @@ using UnityEngine;
 public class ShipCollision : MonoBehaviour
 {
    public ShipHealth shipHealth; // Reference to the ShipHealth script
-   public int damageAmount = 1; // Damage caused by the asteroid
+   public int damageAmount = 10; // Damage caused by the asteroid
 
    private void OnCollisionEnter(Collision collision)
    {

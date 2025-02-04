@@ -7942,8 +7942,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  healthBarMat: {fileID: 0}
-  textures: []
+  healthBarMat: {fileID: 2100000, guid: ccfacc5ced68a2743b46e41c9468232e, type: 2}
+  textures:
+  - {fileID: 2800000, guid: 5ec9a7d6bce33bf408bf524a92fc1e63, type: 3}
+  - {fileID: 2800000, guid: e395fb7e2eb0f8a4c92d89fba35d64e0, type: 3}
+  - {fileID: 2800000, guid: 0366ca2355a861448bc8644139c16488, type: 3}
+  - {fileID: 2800000, guid: 729fe53e58846c64b873034864566429, type: 3}
+  - {fileID: 2800000, guid: b8c9455b92789f9488f84e2bfa89ef38, type: 3}
+  - {fileID: 2800000, guid: b359706151342e84a926477e4555274d, type: 3}
+  - {fileID: 2800000, guid: 3d55b255e40745d4bbe99fd7df682ac7, type: 3}
+  - {fileID: 2800000, guid: b17a19c9d079c744c90885b17d453892, type: 3}
+  - {fileID: 2800000, guid: c79cc91e63ab1c74994deadb3871dd6e, type: 3}
+  - {fileID: 2800000, guid: 18185b7849a4b394b975a647c1326634, type: 3}
+  - {fileID: 2800000, guid: ff5aa8b89d779af42bcc00036a8df9b0, type: 3}
 --- !u!54 &1110733390
 Rigidbody:
   m_ObjectHideFlags: 0
