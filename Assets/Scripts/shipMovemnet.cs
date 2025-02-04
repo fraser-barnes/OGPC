@@ -43,7 +43,7 @@ public class SpaceshipController : MonoBehaviour
     void handleBlackHole(){
         Vector3 direction = (targetPosition - transform.position).normalized;
         float distance = Mathf.Max(Vector3.Distance(transform.position, targetPosition), 0.01f); // Avoid division by zero
-        float gravityForce = 30000f / distance; // Inverse distance force
+        float gravityForce = 1000000f / distance; // Inverse distance force
         transform.position += direction * gravityForce * Time.deltaTime;
     }
     void HandleMoverInput()
@@ -86,7 +86,7 @@ public class SpaceshipController : MonoBehaviour
     mover.transform.position = spaceship.TransformPoint(localMoverPosition);
 
     // Debug log to verify positions
-    Debug.Log($"Orb World Position: {mover.transform.position} | Local Position: {localMoverPosition}");
+    //Debug.Log($"Orb World Position: {mover.transform.position} | Local Position: {localMoverPosition}");
 }
 
 
