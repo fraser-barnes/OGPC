@@ -8006,7 +8006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipHealth: {fileID: 1110733389}
-  damageAmount: 0
+  damageAmount: 10
 --- !u!114 &1110733389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14501,7 +14501,7 @@ GameObject:
   - component: {fileID: 1929824979}
   m_Layer: 0
   m_Name: Asteroid
-  m_TagString: Untagged
+  m_TagString: Asteroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
