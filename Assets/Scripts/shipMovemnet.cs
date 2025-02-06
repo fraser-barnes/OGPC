@@ -1,3 +1,4 @@
+
 using UnityEditor;
 using UnityEngine;
 
@@ -67,7 +68,7 @@ public class SpaceshipController : MonoBehaviour
         input.x             // Lateral movement (side-to-side)
     ) * moverSensitivity * Time.deltaTime;
 
-    // Convert local movement to world space
+    // Convert local movement to world space using ship's rotation
     Vector3 worldMovement = spaceship.TransformDirection(localMovement);
 
     // Apply movement
@@ -87,14 +88,15 @@ public class SpaceshipController : MonoBehaviour
 
 
 
+
 void HandleThrust()
 {
-    // Calculate thrust based on mover's local offset
+    // Get local offset of mover
     Vector3 localOffset = spaceship.InverseTransformPoint(mover.transform.position) - initialMoverPositionLocal;
 
     // WASD fallback input for thrust
-    float thrustX = Input.GetAxis("Horizontal");
-    float thrustZ = Input.GetAxis("Vertical");
+    float thrustX = Input.GetAxis("Vertical");
+    float thrustZ = -Input.GetAxis("Horizontal");
 
     // Combine mover offset and WASD input
     Vector3 thrustDirection = new Vector3(
@@ -103,9 +105,11 @@ void HandleThrust()
         localOffset.z + thrustZ
     );
 
-    // Scale and apply thrust to spaceship
-    Vector3 movement = thrustDirection * moveSpeed * Time.deltaTime;
-    spaceship.Translate(movement, Space.World);
+    // Convert thrust direction to spaceship's local space
+    Vector3 worldMovement = spaceship.TransformDirection(thrustDirection);
+
+    // Apply movement in world space using local direction
+    spaceship.position += worldMovement * moveSpeed * Time.deltaTime;
 
     // Smooth snap the mover back to its initial position
     Vector3 snappedLocalPosition = Vector3.Lerp(
@@ -117,6 +121,9 @@ void HandleThrust()
     // Apply snapped position back to mover
     mover.transform.position = spaceship.TransformPoint(snappedLocalPosition);
 }
+
+
+
 
     void HandleRotation()
     {

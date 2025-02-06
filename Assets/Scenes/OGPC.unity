@@ -7964,7 +7964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mover: {fileID: 1570972404}
-  moveSpeed: 100
+  moveSpeed: 500
   rotationSpeed: 50
   spaceship: {fileID: 198918388}
   moverSensitivity: 50
