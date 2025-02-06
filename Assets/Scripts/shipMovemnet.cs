@@ -1,4 +1,3 @@
-using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -48,46 +47,44 @@ public class SpaceshipController : MonoBehaviour
     }
     void HandleMoverInput()
 {
-    // Get input for movement (joystick or keyboard)
+    // Get input for movement (joystick or WASD)
     Vector2 input = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
     if (input == Vector2.zero)
     {
-        input.x = -Input.GetAxis("Horizontal"); // A/D or Left/Right
-        input.y = Input.GetAxis("Vertical");   // W/S or Up/Down
+        input.x = -Input.GetAxis("Horizontal"); // A/D keys (Left/Right)
+        input.y = Input.GetAxis("Vertical");   // W/S keys (Forward/Backward)
     }
 
-    // Angle of the desk in radians
+    // Desk tilt angle in radians
     float deskAngleRadians = Mathf.Deg2Rad * 28.81f;
 
     // Convert input into movement relative to the desk's plane
     float forwardMovementZ = input.y / Mathf.Cos(deskAngleRadians); // Forward movement adjusted for tilt
-    float upwardMovementY = input.y * Mathf.Tan(deskAngleRadians);  // Vertical adjustment for tilt
+    float upwardMovementY = input.y * Mathf.Tan(deskAngleRadians);  // Vertical movement based on tilt
     Vector3 localMovement = new Vector3(
-        forwardMovementZ,                  // Horizontal movement stays as is
-        upwardMovementY,          // Adjusted upward movement
-        input.x          // Adjusted forward movement
+        forwardMovementZ,   // Movement along tilted plane
+        upwardMovementY,    // Adjusted vertical movement
+        input.x             // Lateral movement (side-to-side)
     ) * moverSensitivity * Time.deltaTime;
 
-    // Transform local movement to world space based on spaceship's orientation
+    // Convert local movement to world space
     Vector3 worldMovement = spaceship.TransformDirection(localMovement);
 
-    // Move the orb in world space
+    // Apply movement
     mover.transform.position += worldMovement;
 
-    // Clamp the orb's position relative to the ship in local space
+    // Clamp mover's position within a defined range
     Vector3 localMoverPosition = spaceship.InverseTransformPoint(mover.transform.position);
     localMoverPosition = new Vector3(
         Mathf.Clamp(localMoverPosition.x, initialMoverPositionLocal.x - 0.5f, initialMoverPositionLocal.x + 0.5f),
-        localMoverPosition.y, // Allow vertical movement on the desk plane
+        localMoverPosition.y, // Allow vertical movement
         Mathf.Clamp(localMoverPosition.z, initialMoverPositionLocal.z - 0.5f, initialMoverPositionLocal.z + 0.5f)
     );
 
-    // Apply the clamped position back to world space
+    // Apply clamped position
     mover.transform.position = spaceship.TransformPoint(localMoverPosition);
-
-    // Debug log to verify positions
-    //Debug.Log($"Orb World Position: {mover.transform.position} | Local Position: {localMoverPosition}");
 }
+
 
 
 void HandleThrust()
@@ -123,11 +120,33 @@ void HandleThrust()
 
     void HandleRotation()
     {
-        // Get thumbstick input for rotation
+        // Get thumbstick input for yaw (left/right rotation)
         Vector2 rotationInput = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
 
-        // Apply rotation based on input
+        // Initialize rotation vector
         Vector3 rotation = new Vector3(0, rotationInput.x * rotationSpeed * Time.deltaTime, 0);
+
+        // Arrow key inputs for additional rotation control
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            rotation.z -= rotationSpeed * Time.deltaTime; // Tilt forward
+        }
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            rotation.z += rotationSpeed * Time.deltaTime; // Tilt backward
+        }
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            rotation.y -= rotationSpeed * Time.deltaTime; // Turn left
+        }
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            rotation.y += rotationSpeed * Time.deltaTime; // Turn right
+        }
+
+        // Apply rotation to the spaceship
         spaceship.Rotate(rotation, Space.Self);
     }
+
+
 }
