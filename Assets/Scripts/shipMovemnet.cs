@@ -116,14 +116,19 @@ void HandleThrust()
     // Get local offset of mover
     Vector3 localOffset = spaceship.InverseTransformPoint(mover.transform.position) - initialMoverPositionLocal;
 
-    // WASD fallback input for thrust
-    float thrustX = Input.GetAxis("Vertical");
-    float thrustZ = -Input.GetAxis("Horizontal");
+    // WASD input handling (manual key checks)
+    float thrustX = 0f;
+    float thrustZ = 0f;
+
+    if (Input.GetKey(KeyCode.W)) thrustX = 1f;  // Forward
+    if (Input.GetKey(KeyCode.S)) thrustX = -1f; // Backward
+    if (Input.GetKey(KeyCode.A)) thrustZ = 1f;  // Left
+    if (Input.GetKey(KeyCode.D)) thrustZ = -1f; // Right
 
     // Combine mover offset and WASD input
     Vector3 thrustDirection = new Vector3(
-        localOffset.x + thrustX, 
-        0, 
+        localOffset.x + thrustX,
+        0,
         localOffset.z + thrustZ
     );
 
@@ -133,7 +138,7 @@ void HandleThrust()
     // Apply movement in world space using local direction
     spaceship.position += worldMovement * moveSpeed * Time.deltaTime;
 
-    // Smooth snap the mover back to its initial position
+    // Smoothly snap the mover back to its initial position
     Vector3 snappedLocalPosition = Vector3.Lerp(
         spaceship.InverseTransformPoint(mover.transform.position),
         initialMoverPositionLocal,
@@ -143,6 +148,7 @@ void HandleThrust()
     // Apply snapped position back to mover
     mover.transform.position = spaceship.TransformPoint(snappedLocalPosition);
 }
+
 
 
 
