@@ -13,6 +13,10 @@ public class SpaceshipController : MonoBehaviour
     public GameObject blackHole; //black hole for position
     private Vector3 moveDirection;
     private Vector3 targetPosition;
+    private int negativeSign;
+    private int blackHoleStartX;
+    private int blackHoleStartY;
+    private int blackHoleStartZ;
 
     private Vector3 initialMoverPositionLocal; // Mover position relative to the spaceship
 
@@ -25,10 +29,28 @@ public class SpaceshipController : MonoBehaviour
             return;
         }
 
+        //Spawn the black hole
+        negativeSign = Random.Range(1, 3);
+
+        if (negativeSign == 1){
+            blackHoleStartX = Random.Range(25000, 35000);
+            blackHoleStartY = Random.Range(25000, 35000);
+            blackHoleStartZ = Random.Range(25000, 35000);
+        }
+        else if (negativeSign == 2){
+            blackHoleStartX = -(Random.Range(25000, 35000));
+            blackHoleStartY = -(Random.Range(25000, 35000));
+            blackHoleStartZ = -(Random.Range(25000, 35000));
+        }
+
+        blackHole.transform.position = new Vector3(blackHoleStartX, blackHoleStartY, blackHoleStartZ);
+
         // Store the initial local position of the mover
         initialMoverPositionLocal = spaceship.InverseTransformPoint(mover.transform.position);
         targetPosition = blackHole.transform.position;
         moveDirection = (targetPosition - transform.position).normalized;
+
+        
     }
 
     void Update()
