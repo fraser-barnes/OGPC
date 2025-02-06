@@ -12,6 +12,7 @@ public class ShipHealth : MonoBehaviour
 
     void Start()
     {
+        healthBarMat.mainTexture = textures[10];
         currentHealth = maxHealth;
     }
 
