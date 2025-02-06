@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Asteroid
   - HealthBar
+  - BlackHole
   layers:
   - Default
   - TransparentFX

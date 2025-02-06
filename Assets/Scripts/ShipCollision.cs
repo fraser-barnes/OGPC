@@ -7,36 +7,13 @@ public class ShipCollision : MonoBehaviour
 
    private void OnCollisionEnter(Collision collision)
    {
-       // Check if the collision is with an asteroid
-       if (collision.gameObject.CompareTag("Asteroid"))
-       {
-
-         Debug.Log("collided"); // Print to the console
-           // Call the TakeDamage method on the ShipHealth script
-           if (shipHealth != null)
-           {
-               shipHealth.TakeDamage(damageAmount);
-           }
-
-           // Optionally, destroy the asteroid
-          // collision.gameObject.SetActive(false);
-
-       }
-   }
-
-   private void OnTriggerEnter(Collider other)
-   {
-       // Alternatively, handle trigger collisions if using trigger colliders
-       if (other.CompareTag("Asteroid"))
-       {
-
-         Debug.Log("collided"); // Print to the console
-           if (shipHealth != null)
-           {
-               shipHealth.TakeDamage(damageAmount);
-           }
-
-           //other.gameObject.SetActive(false);
-       }
+        // Check if the collision is with an asteroid
+        if (collision.gameObject.CompareTag("Asteroid"))
+        {
+            shipHealth.TakeDamage(damageAmount);
+        } else if (collision.gameObject.CompareTag("BlackHole"))
+        {
+            shipHealth.TakeDamage(1000);
+        }
    }
 }
