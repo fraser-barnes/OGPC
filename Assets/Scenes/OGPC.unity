@@ -7897,6 +7897,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2442220561a4e618302f7ff9850379, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spaceshipController: {fileID: 0}
   shipHealth: {fileID: 1110733389}
   damageAmount: 10
 --- !u!114 &1110733389
@@ -7970,6 +7971,7 @@ MonoBehaviour:
   moverSensitivity: 50
   snapBackSpeed: 10
   blackHole: {fileID: 5873276394778592094}
+  shieldActive: 0
 --- !u!135 &1110733392
 SphereCollider:
   m_ObjectHideFlags: 0

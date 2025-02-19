@@ -16,8 +16,11 @@ public class SpaceshipController : MonoBehaviour
     private Vector3 targetPosition;
     private int negativeSign;
     private int blackHoleStartX;
-    private int blackHoleStartY;
+    private int blackHoleStartY; 
     private int blackHoleStartZ;
+    public bool shieldActive;
+
+    private bool shieldDebounce = false;
 
     private Vector3 initialMoverPositionLocal; // Mover position relative to the spaceship
 
@@ -60,6 +63,28 @@ public class SpaceshipController : MonoBehaviour
         HandleThrust();
         HandleRotation();
         handleBlackHole();
+        if (Input.GetKey(KeyCode.K) && !shieldDebounce) {
+            shieldActivate();
+            shieldDebounce = true;
+        }
+        else if (!Input.GetKey(KeyCode.K) && shieldDebounce)
+        {
+            shieldDebounce = false;
+        }
+    }
+
+    public bool GetShield(){
+        return(shieldActive);
+    }
+
+    void shieldActivate(){
+        shieldActive = !shieldActive;
+        if (shieldActive){
+            moveSpeed = 350f;
+        }
+        else {
+            moveSpeed = 500f;
+        }
     }
 
     void handleBlackHole(){
