@@ -80,7 +80,7 @@ public class SpaceshipController : MonoBehaviour
     void shieldActivate(){
         shieldActive = !shieldActive;
         if (shieldActive){
-            moveSpeed = 350f;
+            moveSpeed = 250f;
         }
         else {
             moveSpeed = 500f;
