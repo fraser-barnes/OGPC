@@ -6,13 +6,13 @@ public class ShipHealth : MonoBehaviour
     private int maxHealth = 100;
     private int currentHealth;
     [SerializeField]
-    private Material healthBarMat;
+    private Renderer healthBar;
     [SerializeField]
-    private Texture[] textures;
+    private Material[] materials;
 
     void Start()
     {
-        healthBarMat.mainTexture = textures[10];
+        healthBar.material = materials[10];
         currentHealth = maxHealth;
     }
 
@@ -37,7 +37,7 @@ public class ShipHealth : MonoBehaviour
 
     private void UpdateHealthBar()
     {
-        healthBarMat.mainTexture = textures[Mathf.RoundToInt(currentHealth/10f)];
+        healthBar.material = materials[Mathf.RoundToInt(currentHealth/10f)];
     }
 
     private void DestroyShip()
