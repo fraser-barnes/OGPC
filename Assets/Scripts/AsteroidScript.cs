@@ -7,7 +7,7 @@ public class AsteroidScript : MonoBehaviour
     private float despawnTimer; // Timer for despawning after collision
     private bool collidedWithShip = false; // Flag for collision with the ship
     private Vector3 movementDirection; // Initial movement direction
-    private float speed = 3000f; // Increased speed (previously 500f)
+    private float speed = 800f; // Increased speed (previously 500f)
     private float deflectionDampening = 0.5f; // Reduces momentum after deflection
     private float randomOffsetRange = 500f; // Range for random offset
 
@@ -21,7 +21,7 @@ public class AsteroidScript : MonoBehaviour
         lifetime += Time.deltaTime;
 
         // Despawn asteroid after 40 seconds
-        if (lifetime > 40)
+        if (lifetime > 15)
         {
             ResetAsteroid();
         }
