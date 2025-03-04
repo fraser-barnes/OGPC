@@ -21,7 +21,7 @@ public class AsteroidScript : MonoBehaviour
         lifetime += Time.deltaTime;
 
         // Despawn asteroid after 40 seconds
-        if (lifetime > 15)
+        if (lifetime > 17)
         {
             ResetAsteroid();
         }
