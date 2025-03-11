@@ -3,14 +3,15 @@ using UnityEngine;
 public class AsteroidScript : MonoBehaviour
 {
     public GameObject ship; // Reference to the ship
-    private float lifetime;
-    private float despawnTimer; // Timer for despawning after collision
-    private bool collidedWithShip = false; // Flag for collision with the ship
     private Vector3 movementDirection; // Initial movement direction
+    private Vector3 initialPosition; // Initial position of the asteroid
     private float speed = 200f; // Speed of the asteroid
     private float deflectionDampening = 0.5f; // Reduces momentum after deflection
-    private float spawnDistanceMin = 1000f; // Minimum spawn distance from the ship
+    private float spawnDistanceMin = 5000f; // Minimum spawn distance from the ship
     private float spawnDistanceMax = 10000f; // Maximum spawn distance from the ship
+    private float despawnDistanceThreshold = 10000f; // Despawn threshold if asteroid is too far from the ship
+
+    private bool collidedWithShip = false; // Flag for collision with the ship
 
     void OnEnable()
     {
@@ -19,22 +20,10 @@ public class AsteroidScript : MonoBehaviour
 
     void Update()
     {
-        lifetime += Time.deltaTime;
-
-        // Despawn asteroid after 17 seconds
-        if (lifetime > 17)
+        // If the asteroid is too far from the ship, reset it
+        if (Vector3.Distance(transform.position, ship.transform.position) > despawnDistanceThreshold)
         {
             ResetAsteroid();
-        }
-
-        // If collided with the ship, start despawn countdown
-        if (collidedWithShip)
-        {
-            despawnTimer += Time.deltaTime;
-            if (despawnTimer >= 1f)
-            {
-                ResetAsteroid();
-            }
         }
 
         // Update movement direction toward the ship's current position
@@ -50,7 +39,7 @@ public class AsteroidScript : MonoBehaviour
         {
             Debug.Log("Asteroid collided with the ship!");
             collidedWithShip = true;
-            despawnTimer = 0f; // Start despawn timer
+            ResetAsteroid(); // Reset asteroid immediately upon collision
         }
         else if (collision.gameObject.CompareTag("Asteroid"))
         {
@@ -77,6 +66,7 @@ public class AsteroidScript : MonoBehaviour
 
         // Set initial movement direction (towards the ship)
         movementDirection = (ship.transform.position - transform.position).normalized;
+        initialPosition = transform.position; // Store initial spawn position
     }
 
     private void UpdateMovementDirection()
@@ -88,8 +78,6 @@ public class AsteroidScript : MonoBehaviour
     private void ResetAsteroid()
     {
         // Reset asteroid properties and deactivate
-        lifetime = 0;
-        collidedWithShip = false;
-        gameObject.SetActive(false);
+        gameObject.SetActive(false); // Deactivate asteroid when despawned
     }
 }
