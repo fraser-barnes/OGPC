@@ -7,20 +7,21 @@ public class AsteroidScript : MonoBehaviour
     private float despawnTimer; // Timer for despawning after collision
     private bool collidedWithShip = false; // Flag for collision with the ship
     private Vector3 movementDirection; // Initial movement direction
-    private float speed = 800f; // Increased speed (previously 500f)
+    private float speed = 200f; // Speed of the asteroid
     private float deflectionDampening = 0.5f; // Reduces momentum after deflection
-    private float randomOffsetRange = 500f; // Range for random offset
+    private float spawnDistanceMin = 1000f; // Minimum spawn distance from the ship
+    private float spawnDistanceMax = 10000f; // Maximum spawn distance from the ship
 
     void OnEnable()
     {
-        SetInitialDirection(); // Set direction only when the asteroid spawns
+        SetInitialDirection(); // Set movement direction upon spawn
     }
 
     void Update()
     {
         lifetime += Time.deltaTime;
 
-        // Despawn asteroid after 40 seconds
+        // Despawn asteroid after 17 seconds
         if (lifetime > 17)
         {
             ResetAsteroid();
@@ -36,7 +37,10 @@ public class AsteroidScript : MonoBehaviour
             }
         }
 
-        // Move asteroid in a straight line
+        // Update movement direction toward the ship's current position
+        UpdateMovementDirection();
+
+        // Move asteroid in the updated direction
         transform.position += movementDirection * speed * Time.deltaTime;
     }
 
@@ -66,15 +70,19 @@ public class AsteroidScript : MonoBehaviour
 
     private void SetInitialDirection()
     {
-        // Randomized target relative to the ship's position
-        Vector3 targetPosition = ship.transform.position + new Vector3(
-            Random.Range(-randomOffsetRange, randomOffsetRange),
-            Random.Range(-randomOffsetRange, randomOffsetRange),
-            Random.Range(-randomOffsetRange, randomOffsetRange)
-        );
+        // Spawn in all directions around the ship at a further distance
+        Vector3 randomDirection = Random.onUnitSphere; // 360-degree random direction
+        float spawnDistance = Random.Range(spawnDistanceMin, spawnDistanceMax);
+        transform.position = ship.transform.position + randomDirection * spawnDistance;
 
-        // Set initial movement direction
-        movementDirection = (targetPosition - transform.position).normalized;
+        // Set initial movement direction (towards the ship)
+        movementDirection = (ship.transform.position - transform.position).normalized;
+    }
+
+    private void UpdateMovementDirection()
+    {
+        // Continuously update the direction toward the current ship position
+        movementDirection = (ship.transform.position - transform.position).normalized;
     }
 
     private void ResetAsteroid()
