@@ -19944,7 +19944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radarSphere: {fileID: 2124813533}
-  radarScaleFactor: 0.01
+  radarScaleFactor: 0.001
   radarObjects:
   - {fileID: 1110733385}
   - {fileID: 1929824970}
@@ -19983,6 +19983,7 @@ MonoBehaviour:
   - {fileID: 59554314}
   - {fileID: 5873276394778592094}
   - {fileID: 515880492}
+  updateInterval: 0.5
 --- !u!1 &2128361054
 GameObject:
   m_ObjectHideFlags: 0
