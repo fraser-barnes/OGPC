@@ -4424,6 +4424,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f6c5d6ec779606459f39a8773a9fb35, type: 3}
+--- !u!1 &515880492 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 135778, guid: 2f6c5d6ec779606459f39a8773a9fb35, type: 3}
+  m_PrefabInstance: {fileID: 515880491}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &522018697
 GameObject:
   m_ObjectHideFlags: 0
@@ -19940,9 +19945,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radarSphere: {fileID: 2124813533}
   radarScaleFactor: 0.01
-  radarLayers:
-    serializedVersion: 2
-    m_Bits: 1
+  radarObjects:
+  - {fileID: 1110733385}
+  - {fileID: 1929824970}
+  - {fileID: 684061321}
+  - {fileID: 947611269}
+  - {fileID: 1163395032}
+  - {fileID: 1908998104}
+  - {fileID: 1226210878}
+  - {fileID: 126934759}
+  - {fileID: 861066444}
+  - {fileID: 1034038095}
+  - {fileID: 384786961}
+  - {fileID: 1730144690}
+  - {fileID: 648371473}
+  - {fileID: 1309142664}
+  - {fileID: 145642010}
+  - {fileID: 2027304345}
+  - {fileID: 1266535596}
+  - {fileID: 713868630}
+  - {fileID: 121039253}
+  - {fileID: 1826123660}
+  - {fileID: 1245479733}
+  - {fileID: 875493342}
+  - {fileID: 778998071}
+  - {fileID: 1660921140}
+  - {fileID: 1783945837}
+  - {fileID: 531888706}
+  - {fileID: 1075948755}
+  - {fileID: 1831335411}
+  - {fileID: 639311600}
+  - {fileID: 1394274203}
+  - {fileID: 1094970621}
+  - {fileID: 1826924360}
+  - {fileID: 898890139}
+  - {fileID: 1840528681}
+  - {fileID: 59554314}
+  - {fileID: 5873276394778592094}
+  - {fileID: 515880492}
 --- !u!1 &2128361054
 GameObject:
   m_ObjectHideFlags: 0
