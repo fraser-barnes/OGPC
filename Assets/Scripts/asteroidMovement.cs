@@ -3,34 +3,74 @@ using UnityEngine;
 public class AsteroidMovement : MonoBehaviour
 {
     public GameObject[] asteroidArr; // Array of all asteroids
-    private float asteroidCooldown;
+    public float asteroidSpeedMin = 50f;
+    public float asteroidSpeedMax = 150f;
+    public float despawnDistance = 15000f; // Distance at which asteroids despawn
+    private float asteroidCooldown = 5f; // Cooldown between spawns
+    private float asteroidCooldownTimer; // Timer for cooldown
+    private Transform shipTransform; // Reference to the ship's transform
+    public float shipDistanceThreshold = 20000f; // Threshold distance to ship
+
+    void Start()
+    {
+        // Assuming the ship is tagged as "Ship" in the scene
+        shipTransform = GameObject.FindWithTag("Ship").transform;
+        asteroidCooldownTimer = asteroidCooldown; // Initialize cooldown timer
+    }
 
     void Update()
     {
-        asteroidCooldown += Time.deltaTime;
+        // Decrease the cooldown timer by the elapsed time
+        asteroidCooldownTimer -= Time.deltaTime;
 
-        // Spawn asteroids if they are not already active
+        // Spawn new asteroid when the cooldown is over
+        if (asteroidCooldownTimer <= 0f)
+        {
+            for (int n = 0; n < asteroidArr.Length; n++)
+            {
+                // Check if asteroid is inactive
+                if (!asteroidArr[n].activeInHierarchy)
+                {
+                    // Reset cooldown timer
+                    asteroidCooldownTimer = asteroidCooldown;
+
+                    // Set random spawn position
+                    Vector3 randomDirection = Random.onUnitSphere;
+                    float spawnDistance = Random.Range(5000f, 10000f);
+                    Vector3 spawnPosition = transform.position + randomDirection * spawnDistance;
+
+                    // Set random scale
+                    float randomScale = Random.Range(200f, 500f);
+                    Vector3 asteroidScale = new Vector3(randomScale, randomScale, randomScale);
+
+                    asteroidArr[n].transform.position = spawnPosition;
+                    asteroidArr[n].transform.localScale = asteroidScale;
+                    asteroidArr[n].SetActive(true);
+
+                    // Initialize asteroid movement
+                    AsteroidScript asteroidScript = asteroidArr[n].GetComponent<AsteroidScript>();
+                    if (asteroidScript != null)
+                    {
+                        asteroidScript.InitializeMovement();
+                    }
+
+                    break; // Exit the loop after spawning one asteroid
+                }
+            }
+        }
+
+        // Check if asteroids are too far from the ship and deactivate them
         for (int n = 0; n < asteroidArr.Length; n++)
         {
-            if (!asteroidArr[n].activeInHierarchy && asteroidCooldown > 0)
+            if (asteroidArr[n].activeInHierarchy)
             {
-                asteroidCooldown = 0;
+                float distanceToShip = Vector3.Distance(asteroidArr[n].transform.position, shipTransform.position);
 
-                // Set a random spawn position within the range of 5,000f to 10,000f from the ship
-                Vector3 randomDirection = Random.onUnitSphere; // Random direction in all directions
-                float spawnDistance = Random.Range(5000f, 10000f); // Spawn distance between 5000f and 10000f
-                Vector3 spawnPosition = transform.position + randomDirection * spawnDistance;
-
-                // Set a random scale between 200f and 350f
-                float randomScale = Random.Range(200f, 350f);
-                Vector3 asteroidScale = new Vector3(randomScale, randomScale, randomScale);
-
-                // Configure and activate the asteroid immediately
-                asteroidArr[n].transform.position = spawnPosition;
-                asteroidArr[n].transform.localScale = asteroidScale;
-                asteroidArr[n].SetActive(true);  // Immediately set the asteroid active
-
-                break;
+                if (distanceToShip > shipDistanceThreshold)
+                {
+                    // Deactivate asteroid if it's too far from the ship
+                    asteroidArr[n].SetActive(false);
+                }
             }
         }
     }

@@ -2,46 +2,33 @@ using UnityEngine;
 
 public class AsteroidScript : MonoBehaviour
 {
-    public GameObject ship; // Reference to the ship
     private Vector3 movementDirection; // Initial movement direction
-    private Vector3 initialPosition; // Initial position of the asteroid
-    private float speed = 200f; // Speed of the asteroid
+    private float speed;
     private float deflectionDampening = 0.5f; // Reduces momentum after deflection
-    private float spawnDistanceMin = 5000f; // Minimum spawn distance from the ship
-    private float spawnDistanceMax = 10000f; // Maximum spawn distance from the ship
-    private float despawnDistanceThreshold = 10000f; // Despawn threshold if asteroid is too far from the ship
+    private float spawnDistanceMin = 5000f; // Minimum spawn distance
+    private float spawnDistanceMax = 10000f; // Maximum spawn distance
+    private float despawnDistanceThreshold = 15000f; // Despawn threshold if asteroid is too far from origin
 
-    private bool collidedWithShip = false; // Flag for collision with the ship
-
-    void OnEnable()
+    public void InitializeMovement()
     {
-        SetInitialDirection(); // Set movement direction upon spawn
+        movementDirection = Random.onUnitSphere.normalized; // Random movement direction
+        speed = Random.Range(50f, 150f); // Random speed within range
     }
 
     void Update()
     {
-        // If the asteroid is too far from the ship, reset it
-        if (Vector3.Distance(transform.position, ship.transform.position) > despawnDistanceThreshold)
+        // Move asteroid in its set direction
+        transform.position += movementDirection * speed * Time.deltaTime;
+
+        if (transform.position.magnitude > despawnDistanceThreshold)
         {
             ResetAsteroid();
         }
-
-        // Update movement direction toward the ship's current position
-        UpdateMovementDirection();
-
-        // Move asteroid in the updated direction
-        transform.position += movementDirection * speed * Time.deltaTime;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject == ship)
-        {
-            Debug.Log("Asteroid collided with the ship!");
-            collidedWithShip = true;
-            ResetAsteroid(); // Reset asteroid immediately upon collision
-        }
-        else if (collision.gameObject.CompareTag("Asteroid"))
+        if (collision.gameObject.CompareTag("Asteroid"))
         {
             Debug.Log("Asteroid collided with another asteroid!");
 
@@ -55,24 +42,6 @@ public class AsteroidScript : MonoBehaviour
             // Move slightly away from the collision point
             transform.position += collisionNormal * 0.1f;
         }
-    }
-
-    private void SetInitialDirection()
-    {
-        // Spawn in all directions around the ship at a further distance
-        Vector3 randomDirection = Random.onUnitSphere; // 360-degree random direction
-        float spawnDistance = Random.Range(spawnDistanceMin, spawnDistanceMax);
-        transform.position = ship.transform.position + randomDirection * spawnDistance;
-
-        // Set initial movement direction (towards the ship)
-        movementDirection = (ship.transform.position - transform.position).normalized;
-        initialPosition = transform.position; // Store initial spawn position
-    }
-
-    private void UpdateMovementDirection()
-    {
-        // Continuously update the direction toward the current ship position
-        movementDirection = (ship.transform.position - transform.position).normalized;
     }
 
     private void ResetAsteroid()
