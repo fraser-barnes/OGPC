@@ -1,19 +1,22 @@
-using UnityEngine;
+//using UnityEngine;
 
-private int fireCooldown = 5;
-private int timeSinceFired = 6;
-public GameObject firePoint; 
 
-public class FireMissileScript : MonoBehaviour
-{
+
+//public class FireMissileScript : MonoBehaviour
+//{
+    //private float fireCooldown = 5;
+    //private float timeSinceFired = 6;
+   // public GameObject firePoint; 
+    
+    
     // Update is called once per frame
-    void Update()
-    {
-        timeSinceFired += Time.deltaTime;
+   // void Update()
+  //  {
+       // timeSinceFired += Time.deltaTime;
 
-        if (Input.GetKey(KeyCode.z) && timeSinceFired > fireCooldown){
-            SetActive(true);
-            transform.position = firePoint.position;
-        }
-    }
-}
+       // if (Input.GetKey(KeyCode.Z) && timeSinceFired > fireCooldown){
+       //     firePoint.SetActive(true);
+       //     transform.position = firePoint.position;
+      //  }
+  // }
+//}
