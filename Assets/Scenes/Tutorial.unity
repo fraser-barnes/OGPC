@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 8530a2b81d7514894885f9defb73cd41, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -1990,6 +1990,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4453513310108136, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
   m_PrefabInstance: {fileID: 321618985}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &329117363 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -804731622281664130, guid: 82a3d002462339f48882e9875352d953, type: 3}
+  m_PrefabInstance: {fileID: 1998018998}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &352852231
 GameObject:
   m_ObjectHideFlags: 0
@@ -2407,6 +2412,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb18240d86a1a458991a4514c8fea9e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radarSphere: {fileID: 0}
+  radarScaleFactor: 0.01
+  radarObjects: []
+  updateInterval: 0.5
 --- !u!135 &379500288
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2918,6 +2927,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7793f81d9765ce84f9b5735553a9daf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  circles: []
 --- !u!23 &417603897
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4564,6 +4574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f496c4629d394b2f932672a4f470e39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
 --- !u!1 &668716996
 GameObject:
   m_ObjectHideFlags: 0
@@ -13176,6 +13187,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b7af540ba41f4a1cbdbc8d705d5b147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mover: {fileID: 2087629477}
+  moveSpeed: 1000
+  rotationSpeed: 100
+  spaceship: {fileID: 1998019000}
+  moverSensitivity: 2
+  snapBackSpeed: 5
+  blackHole: {fileID: 1356592892}
+  shieldActive: 0
 --- !u!54 &1998019003
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13215,6 +13234,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2442220561a4e618302f7ff9850379, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spaceshipController: {fileID: 1998019002}
+  shipHealth: {fileID: 1998019005}
+  damageAmount: 10
 --- !u!114 &1998019005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13227,6 +13249,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aee5f2fabe30a499fb14023f9b7fa52e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 329117363}
+  materials:
+  - {fileID: 2100000, guid: ccfacc5ced68a2743b46e41c9468232e, type: 2}
+  - {fileID: 2100000, guid: ec2e45f96989e5141bb68ed1dbb53503, type: 2}
+  - {fileID: 2100000, guid: 7218352380effc54da9a22fc52845153, type: 2}
+  - {fileID: 2100000, guid: 0ea8ca008a6d65d4c8c5ae63407e590b, type: 2}
+  - {fileID: 2100000, guid: f9614bf2f0963944e8e8b56440ad6803, type: 2}
+  - {fileID: 2100000, guid: 66519c4f64d71db4d8aed2f448f3df94, type: 2}
+  - {fileID: 2100000, guid: dcee14974fee6614a960a4a17f915164, type: 2}
+  - {fileID: 2100000, guid: 6342c761aae73b14b9a791f4311bcf77, type: 2}
+  - {fileID: 2100000, guid: 1b55b614babce414aad030105c28d78d, type: 2}
+  - {fileID: 2100000, guid: b08bb3220ce5b704b985b0d783e3059f, type: 2}
+  - {fileID: 2100000, guid: 363445b9b4b0622478c269f9a4a2ab3b, type: 2}
 --- !u!114 &1998019006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13239,6 +13274,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2ea522f1df8641e099b9a0c512b66ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  asteroidArr: []
+  asteroidSpeedMin: 50
+  asteroidSpeedMax: 150
+  despawnDistance: 15000
+  shipDistanceThreshold: 20000
 --- !u!1 &2008808473
 GameObject:
   m_ObjectHideFlags: 0

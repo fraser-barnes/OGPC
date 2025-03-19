@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpaceshipController : MonoBehaviour
 {
@@ -32,7 +33,13 @@ public class SpaceshipController : MonoBehaviour
 
         // Spawn the black hole
         negativeSign = Random.Range(1, 3);
-        if (negativeSign == 1)
+        
+        if (SceneManager.GetActiveScene().buildIndex == 0){
+            blackHoleStartX = 5000;
+            blackHoleStartY = 5000;
+            blackHoleStartZ = 5000;
+        }
+        else if (negativeSign == 1)
         {
             blackHoleStartX = Random.Range(25000, 35000);
             blackHoleStartY = Random.Range(25000, 35000);
