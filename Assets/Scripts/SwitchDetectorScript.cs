@@ -18,6 +18,9 @@ public class SwitchDetectorScript : MonoBehaviour
                     Debug.Log("Clicked object: " + hit.collider.gameObject.name);
                     // Example:  You can access the clicked object here: hit.collider.gameObject
                 }
+                else{
+                    Debug.Log("Nothing clicked");
+                }
             }
         }
     }
