@@ -6,6 +6,7 @@ public class ClickDetection : MonoBehaviour
     public bool shieldsActive = false;
     public bool radarActive = false;
     public bool courseHelperActive = false;
+    public bool blastersActive = false;
 
     void Update()
     {
@@ -50,6 +51,18 @@ public class ClickDetection : MonoBehaviour
                 {
                     courseHelperActive = false;
                     Debug.Log("Clicked object with tag: CourseHelperSwitch");
+                }
+
+                if (hit.transform.gameObject.CompareTag("BlastersSwitch") && !blastersActive)
+                {
+                    blastersActive = true;
+                    Debug.Log("Clicked object with tag: BlastersSwitch");
+                    // Add your code here to handle the click on the object with the tag
+                }
+                else if (hit.transform.gameObject.CompareTag("BlastersSwitch") && blastersActive)
+                {
+                    blastersActive = false;
+                    Debug.Log("Clicked object with tag: BlastersSwitch");
                 }
             }
         }
