@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,13 +10,13 @@ public class SpaceshipController : MonoBehaviour
     public float moverSensitivity = 2f; // Sensitivity for mover input
     public float snapBackSpeed = 5f; // Speed at which the mover snaps back
     public GameObject blackHole; // Black hole for position
+
     private Vector3 moveDirection;
     private Vector3 targetPosition;
     private int negativeSign;
     private int blackHoleStartX;
     private int blackHoleStartY;
     private int blackHoleStartZ;
-    public bool shieldActive;
 
     private bool shieldDebounce = false;
     private Vector3 initialMoverPositionLocal; // Mover position relative to the spaceship
@@ -31,10 +30,11 @@ public class SpaceshipController : MonoBehaviour
             return;
         }
 
-        // Spawn the black hole
+        // Spawn the black hole at a random or predefined position
         negativeSign = Random.Range(1, 3);
-        
-        if (SceneManager.GetActiveScene().buildIndex == 0){
+
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
             blackHoleStartX = 5000;
             blackHoleStartY = 5000;
             blackHoleStartZ = 5000;
@@ -67,27 +67,28 @@ public class SpaceshipController : MonoBehaviour
         HandleRotation();
         HandleBlackHole();
 
-        if (ClickDetection.shieldActive && !shieldDebounce)
-        {
-            ShieldActivate();
-            shieldDebounce = true;
-        }
-        else if (!ClickDetection.shieldActive && shieldDebounce)
-        {
-            shieldDebounce = false;
-        }
+        // Check if ClickDetection has a shieldActive variable
+        //if (ClickDetection.shieldActive && !shieldDebounce)
+    //    {
+    //        ShieldActivate();
+    //        shieldDebounce = true;
+    //    }
+    //    else if (!ClickDetection.shieldActive && shieldDebounce)
+    //    {
+    //        shieldDebounce = false;
+    //    }
     }
 
-    public bool GetShield()
-    {
-        return shieldActive;
-    }
+  //  public bool GetShield()
+  //  {
+  //      return ClickDetection.shieldActive;
+  //  }
 
-    void ShieldActivate()
-    {
-        shieldActive = !shieldActive;
-        moveSpeed = shieldActive ? 500f : 1000f; // Adjust speed when shield is active
-    }
+  //  void ShieldActivate()
+  //  {
+  //      ClickDetection.shieldActive = !ClickDetection.shieldActive;
+  //      moveSpeed = ClickDetection.shieldActive ? 500f : 1000f; // Adjust speed when shield is active
+  //  }
 
     void HandleBlackHole()
     {

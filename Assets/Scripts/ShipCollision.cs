@@ -10,13 +10,13 @@ public class ShipCollision : MonoBehaviour
    {
         // Check if the collision is with an asteroid
         damageAmount = 10;
-        if (spaceshipController.GetShield()){
-                damageAmount = 5;
-            }
+        //if (spaceshipController.GetShield()){
+        //        damageAmount = 5;
+        //    }
         if (collision.gameObject.CompareTag("Asteroid"))
         {
-            
-            
+
+
             shipHealth.TakeDamage(damageAmount);
         } else if (collision.gameObject.CompareTag("BlackHole"))
         {
