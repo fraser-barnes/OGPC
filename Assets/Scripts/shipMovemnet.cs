@@ -67,12 +67,12 @@ public class SpaceshipController : MonoBehaviour
         HandleRotation();
         HandleBlackHole();
 
-        if (Input.GetKey(KeyCode.K) && !shieldDebounce)
+        if (ClickDetection.shieldActive && !shieldDebounce)
         {
             ShieldActivate();
             shieldDebounce = true;
         }
-        else if (!Input.GetKey(KeyCode.K) && shieldDebounce)
+        else if (!ClickDetection.shieldActive && shieldDebounce)
         {
             shieldDebounce = false;
         }
