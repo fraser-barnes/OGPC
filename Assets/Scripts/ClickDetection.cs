@@ -4,6 +4,8 @@ public class ClickDetection : MonoBehaviour
 {
     public string tagToCheck = "MyTag"; // Set this in the Inspector
     public bool shieldsActive = false;
+    public bool radarActive = false;
+    public bool courseHelperActive = false;
 
     void Update()
     {
@@ -24,6 +26,30 @@ public class ClickDetection : MonoBehaviour
                 {
                     shieldsActive = false;
                     Debug.Log("Clicked object with tag: ShieldsSwitch");
+                }
+
+                if (hit.transform.gameObject.CompareTag("RadarSwitch") && !radarActive)
+                {
+                    radarActive = true;
+                    Debug.Log("Clicked object with tag: RadarSwitch");
+                    // Add your code here to handle the click on the object with the tag
+                }
+                else if (hit.transform.gameObject.CompareTag("RadarSwitch") && radarActive)
+                {
+                    radarActiveActive = false;
+                    Debug.Log("Clicked object with tag: RadarSwitch");
+                }
+
+                if (hit.transform.gameObject.CompareTag("CourseHelperSwitch") && !courseHelperActive)
+                {
+                    courseHelperActive = true;
+                    Debug.Log("Clicked object with tag: CourseHelperSwitch");
+                    // Add your code here to handle the click on the object with the tag
+                }
+                else if (hit.transform.gameObject.CompareTag("CourseHelperSwitch") && courseHelperActive)
+                {
+                    courseHelperActive = false;
+                    Debug.Log("Clicked object with tag: CourseHelperSwitch");
                 }
             }
         }
