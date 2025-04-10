@@ -7,6 +7,16 @@ TagManager:
   - Asteroid
   - HealthBar
   - BlackHole
+  - ShieldsSwitch
+  - RadarSwitch
+  - CourseHelperSwitch
+  - BlastersSwitch
+  - HeatingSwitch
+  - SteeringSwitch
+  - ThrustSwitch
+  - WindowWipersSwitch
+  - FlashlightSwitch
+  - RepairSwitch
   layers:
   - Default
   - TransparentFX

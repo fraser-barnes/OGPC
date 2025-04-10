@@ -14,7 +14,7 @@ public class AsteroidMovement : MonoBehaviour
     void Start()
     {
         // Assuming the ship is tagged as "Ship" in the scene
-        shipTransform = GameObject.FindWithTag("Ship").transform;
+        shipTransform = GameObject.FindWithTag("Player").transform;
         asteroidCooldownTimer = asteroidCooldown; // Initialize cooldown timer
     }
 
