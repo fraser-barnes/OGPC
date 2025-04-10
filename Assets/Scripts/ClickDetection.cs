@@ -23,6 +23,9 @@ public class ClickDetection : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
+
+                Debug.Log("Clicked object: " + hit.transform.gameObject.name)
+
                 if (hit.transform.gameObject.CompareTag("ShieldsSwitch") && !shieldsActive)
                 {
                     shieldsActive = true;
