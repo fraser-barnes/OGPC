@@ -39,8 +39,8 @@ public class BlasterController : MonoBehaviour
             }
 
             // Ensure Rigidbody has no drag (so it keeps moving)
-            blasterRb.drag = 0;
-            blasterRb.angularDrag = 0;
+            blasterRb.linearDamping = 0;
+            blasterRb.angularDamping = 0;
             blasterRb.useGravity = false; // Assuming blasters move in space
 
             // Calculate the direction to fire the blaster relative to the ship's current rotation
@@ -50,10 +50,10 @@ public class BlasterController : MonoBehaviour
             fireDirection = Quaternion.Euler(0, fireAngle, 0) * fireDirection;
 
             // Calculate total velocity (ship velocity + additional speed in the adjusted forward direction)
-            Vector3 totalVelocity = shipRigidbody.velocity + fireDirection * (blasterSpeed + extraSpeed);
+            Vector3 totalVelocity = shipRigidbody.linearVelocity + fireDirection * (blasterSpeed + extraSpeed);
 
             // Apply velocity to the blaster (ensuring continuous movement)
-            blasterRb.velocity = totalVelocity;
+            blasterRb.linearVelocity = totalVelocity;
         }
     }
 }

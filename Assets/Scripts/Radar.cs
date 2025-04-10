@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 using System.Collections.Generic;
 
 public class Radar : MonoBehaviour
@@ -72,7 +72,7 @@ public class Radar : MonoBehaviour
         radarMeshRenderer.material = new Material(meshRenderer.material);
 
         // Position the radar object relative to the original
-        radarObject.transform.position = radarSphere.position + 
+        radarObject.transform.position = radarSphere.position +
             (originalObject.transform.position - radarSphere.position) * radarScaleFactor;
 
         radarObjectInstances.Add(radarObject);
@@ -83,8 +83,8 @@ public class Radar : MonoBehaviour
         foreach (GameObject radarObject in radarObjectInstances)
         {
             GameObject originalObject = radarObjects[radarObjectInstances.IndexOf(radarObject)];
-            radarObject.transform.position = radarSphere.position + 
+            radarObject.transform.position = radarSphere.position +
                 (originalObject.transform.position - radarSphere.position) * radarScaleFactor;
         }
     }
-}
+}*/
