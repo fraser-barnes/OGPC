@@ -37,7 +37,7 @@ public class ClickDetection : MonoBehaviour
                 }
                 else if (hit.transform.gameObject.CompareTag("RadarSwitch") && radarActive)
                 {
-                    radarActiveActive = false;
+                    radarActive = false;
                     Debug.Log("Clicked object with tag: RadarSwitch");
                 }
 
