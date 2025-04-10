@@ -25,35 +25,48 @@ public class BlasterController : MonoBehaviour
     }
 
     void FireBlaster()
+{
+    if (blasterPrefab != null && spawnPoint != null)
     {
-        if (blasterPrefab != null && spawnPoint != null)
+
+      // Calculate firing direction
+      Vector3 localDirection = Quaternion.Euler(0f, fireAngle, 0f) * Vector3.forward;
+      Vector3 worldDirection = spawnPoint.TransformDirection(localDirection);
+      // Combine ship velocity and blaster velocity
+      Vector3 totalVelocity = shipRigidbody.linearVelocity + worldDirection * (blasterSpeed + extraSpeed);
+
+        // Offset the spawn position slightly in front of the spawn point
+        Vector3 spawnOffset = spawnPoint.forward * 15f; // Change 1f to push it more/less
+        Vector3 spawnPosition = spawnPoint.position + totalVelocity * 1/5;
+
+        // Instantiate the blaster at the offset position
+        GameObject blaster = Instantiate(blasterPrefab, spawnPosition, spawnPoint.rotation);
+
+        // Rotate the blaster 90 degrees around its own Z-axis
+        blaster.transform.rotation *= Quaternion.Euler(0f, 0f, 90f);
+
+        // Get or add a Rigidbody to the blaster
+        Rigidbody blasterRb = blaster.GetComponent<Rigidbody>();
+        if (blasterRb == null)
         {
-            // Instantiate the blaster at the spawn point
-            GameObject blaster = Instantiate(blasterPrefab, spawnPoint.position, spawnPoint.rotation);
-
-            // Get or add a Rigidbody to the blaster
-            Rigidbody blasterRb = blaster.GetComponent<Rigidbody>();
-            if (blasterRb == null)
-            {
-                blasterRb = blaster.AddComponent<Rigidbody>();
-            }
-
-            // Ensure Rigidbody has no drag (so it keeps moving)
-            blasterRb.linearDamping = 0;
-            blasterRb.angularDamping = 0;
-            blasterRb.useGravity = false; // Assuming blasters move in space
-
-            // Calculate the direction to fire the blaster relative to the ship's current rotation
-            Vector3 fireDirection = spawnPoint.forward;
-
-            // Apply the rotation based on the fireAngle (around the Y-axis for horizontal rotation)
-            fireDirection = Quaternion.Euler(0, fireAngle, 0) * fireDirection;
-
-            // Calculate total velocity (ship velocity + additional speed in the adjusted forward direction)
-            Vector3 totalVelocity = shipRigidbody.linearVelocity + fireDirection * (blasterSpeed + extraSpeed);
-
-            // Apply velocity to the blaster (ensuring continuous movement)
-            blasterRb.linearVelocity = totalVelocity;
+            blasterRb = blaster.AddComponent<Rigidbody>();
         }
+
+        // Ensure Rigidbody has no drag
+        blasterRb.linearDamping = 0;
+        blasterRb.angularDamping = 0;
+        blasterRb.useGravity = false;
+
+
+
+
+        // Apply velocity
+        blasterRb.linearVelocity = totalVelocity;
+
+        // Destroy after 30 seconds
+        Destroy(blaster, 30f);
     }
+}
+
+
 }
