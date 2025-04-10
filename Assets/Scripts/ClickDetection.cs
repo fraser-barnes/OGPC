@@ -18,6 +18,7 @@ public class ClickDetection : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            Debug.Log("click");
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
@@ -122,13 +123,13 @@ public class ClickDetection : MonoBehaviour
                     Debug.Log("Clicked object with tag: FlashlightSwitch Off");
                 }
 
-                if (hit.transform.gameObject.CompareTag("ThrustActiveSwitch") && !thrustActive)
+                if (hit.transform.gameObject.CompareTag("ThrustSwitch") && !thrustActive)
                 {
                     thrustActive = true;
-                    Debug.Log("Clicked object with tag: ThrustActiveSwitch On");
+                    Debug.Log("Clicked object with tag: ThrustSwitch On");
                     // Add your code here to handle the click on the object with the tag
                 }
-                else if (hit.transform.gameObject.CompareTag("ThrustActiveSwitch") && thrustActive)
+                else if (hit.transform.gameObject.CompareTag("ThrustSwitch") && thrustActive)
                 {
                     thrustActive = false;
                     Debug.Log("Clicked object with tag: ThrustActiveSwitch Off");
