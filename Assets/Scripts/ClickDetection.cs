@@ -2,149 +2,72 @@ using UnityEngine;
 
 public class ClickDetection : MonoBehaviour
 {
-    //public string tagToCheck = "MyTag"; // Set this in the Inspector
-    private bool shieldsActive = false;
-    private bool radarActive = false;
-    private bool courseHelperActive = false;
-    private bool blastersActive = false;
-    private bool heatingActive = false;
-    private bool steeringActive = false;
-    private bool repairActive = false;
-    private bool flashlightActive = false;
-    private bool thrustActive = false;
-    private bool windowWipersActive = false;
+    public bool[] switchesActive = new bool[10];
+    // left to right, going down the rows
+    // 0 lighting, 1 steering, 2 blasters, 3 thrust, 4 shields, 5 course helper, 6 repair, 7 radar, 8 window wipers, 9 heating
+
+    [SerializeField]
+    private GameObject[] switches;
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("click");
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
             {
 
                 Debug.Log("Clicked object: " + hit.transform.gameObject.name);
 
-                if (hit.transform.gameObject.CompareTag("ShieldsSwitch") && !shieldsActive)
+                if (hit.collider.gameObject.CompareTag("ShieldsSwitch"))
                 {
-                    shieldsActive = true;
-                    Debug.Log("Clicked object with tag: ShieldsSwitch On");
-                    // Add your code here to handle the click on the object with the tag
-                }
-                else if (hit.transform.gameObject.CompareTag("ShieldsSwitch") && shieldsActive)
-                {
-                    shieldsActive = false;
-                    Debug.Log("Clicked object with tag: ShieldsSwitch Off");
+                    switchesActive[4] = !switchesActive[4];
                 }
 
-                if (hit.transform.gameObject.CompareTag("RadarSwitch") && !radarActive)
+                else if (hit.collider.gameObject.CompareTag("RadarSwitch"))
                 {
-                    radarActive = true;
-                    Debug.Log("Clicked object with tag: RadarSwitch On");
-                    // Add your code here to handle the click on the object with the tag
-                }
-                else if (hit.transform.gameObject.CompareTag("RadarSwitch") && radarActive)
-                {
-                    radarActive = false;
-                    Debug.Log("Clicked object with tag: RadarSwitch Off");
+                    switchesActive[7] = !switchesActive[7];
                 }
 
-                if (hit.transform.gameObject.CompareTag("CourseHelperSwitch") && !courseHelperActive)
+                else if (hit.collider.gameObject.CompareTag("CourseHelperSwitch"))
                 {
-                    courseHelperActive = true;
-                    Debug.Log("Clicked object with tag: CourseHelperSwitch On");
-                    // Add your code here to handle the click on the object with the tag
-                }
-                else if (hit.transform.gameObject.CompareTag("CourseHelperSwitch") && courseHelperActive)
-                {
-                    courseHelperActive = false;
-                    Debug.Log("Clicked object with tag: CourseHelperSwitch Off");
+                    switchesActive[5] = !switchesActive[5];
                 }
 
-                if (hit.transform.gameObject.CompareTag("BlastersSwitch") && !blastersActive)
+                else if (hit.collider.gameObject.CompareTag("BlastersSwitch"))
                 {
-                    blastersActive = true;
-                    Debug.Log("Clicked object with tag: BlastersSwitch On");
-                    // Add your code here to handle the click on the object with the tag
-                }
-                else if (hit.transform.gameObject.CompareTag("BlastersSwitch") && blastersActive)
-                {
-                    blastersActive = false;
-                    Debug.Log("Clicked object with tag: BlastersSwitch Off");
+                    switchesActive[2] = !switchesActive[2];
                 }
 
-                if (hit.transform.gameObject.CompareTag("HeatingSwitch") && !heatingActive)
+                else if (hit.collider.gameObject.CompareTag("HeatingSwitch"))
                 {
-                    heatingActive = true;
-                    Debug.Log("Clicked object with tag: HeatingSwitch On");
-                    // Add your code here to handle the click on the object with the tag
-                }
-                else if (hit.transform.gameObject.CompareTag("HeatingSwitch") && heatingActive)
-                {
-                    heatingActive = false;
-                    Debug.Log("Clicked object with tag: HeatingSwitch Off");
+                    switchesActive[9] = !switchesActive[9];
                 }
 
-                if (hit.transform.gameObject.CompareTag("SteeringSwitch") && !steeringActive)
+                else if (hit.collider.gameObject.CompareTag("SteeringSwitch"))
                 {
-                    steeringActive = true;
-                    Debug.Log("Clicked object with tag: SteeringSwitch On");
-                    // Add your code here to handle the click on the object with the tag
-                }
-                else if (hit.transform.gameObject.CompareTag("SteeringSwitch") && steeringActive)
-                {
-                    steeringActive = false;
-                    Debug.Log("Clicked object with tag: SteeringSwitch Off");
+                    switchesActive[1] = !switchesActive[1];
                 }
 
-                if (hit.transform.gameObject.CompareTag("RepairSwitch") && !repairActive)
+                else if (hit.collider.gameObject.CompareTag("RepairSwitch"))
                 {
-                    repairActive = true;
-                    Debug.Log("Clicked object with tag: RepairSwitch On");
-                    // Add your code here to handle the click on the object with the tag
-                }
-                else if (hit.transform.gameObject.CompareTag("RepairSwitch") && repairActive)
-                {
-                    repairActive = false;
-                    Debug.Log("Clicked object with tag: RepairSwitch Off");
+                    switchesActive[6] = !switchesActive[6];
                 }
 
-                if (hit.transform.gameObject.CompareTag("FlashlightSwitch") && !flashlightActive)
+                else if (hit.collider.gameObject.CompareTag("LightSwitch"))
                 {
-                    flashlightActive = true;
-                    Debug.Log("Clicked object with tag: FlashlightSwitch On");
-                    // Add your code here to handle the click on the object with the tag
-                }
-                else if (hit.transform.gameObject.CompareTag("FlashlightSwitch") && flashlightActive)
-                {
-                    flashlightActive = false;
-                    Debug.Log("Clicked object with tag: FlashlightSwitch Off");
+                    switchesActive[0] = !switchesActive[0];
                 }
 
-                if (hit.transform.gameObject.CompareTag("ThrustSwitch") && !thrustActive)
+                else if (hit.collider.gameObject.CompareTag("ThrustSwitch"))
                 {
-                    thrustActive = true;
-                    Debug.Log("Clicked object with tag: ThrustSwitch On");
-                    // Add your code here to handle the click on the object with the tag
-                }
-                else if (hit.transform.gameObject.CompareTag("ThrustSwitch") && thrustActive)
-                {
-                    thrustActive = false;
-                    Debug.Log("Clicked object with tag: ThrustActiveSwitch Off");
+                    switchesActive[3] = !switchesActive[3];
                 }
 
-                if (hit.transform.gameObject.CompareTag("WindowWipersSwitch") && !windowWipersActive)
+                else if (hit.collider.gameObject.CompareTag("WindowWipersSwitch"))
                 {
-                    windowWipersActive = true;
-                    Debug.Log("Clicked object with tag: WindowWipersSwitch On");
-                    // Add your code here to handle the click on the object with the tag
-                }
-                else if (hit.transform.gameObject.CompareTag("WindowWipersSwitch") && windowWipersActive)
-                {
-                    windowWipersActive = false;
-                    Debug.Log("Clicked object with tag: WindowWipersSwitch Off");
+                    switchesActive[8] = !switchesActive[8];
                 }
             }
         }
