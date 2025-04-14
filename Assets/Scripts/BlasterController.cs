@@ -18,7 +18,7 @@ public class BlasterController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) // Fire when spacebar is pressed
+        if (switchesActive[2] && Input.GetKeyDown(KeyCode.Space)) // Fire when spacebar is pressed
         {
             FireBlaster();
         }

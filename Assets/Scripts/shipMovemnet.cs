@@ -67,28 +67,27 @@ public class SpaceshipController : MonoBehaviour
         HandleRotation();
         HandleBlackHole();
 
-        // Check if ClickDetection has a shieldActive variable
-        //if (ClickDetection.shieldActive && !shieldDebounce)
-    //    {
-    //        ShieldActivate();
-    //        shieldDebounce = true;
-    //    }
-    //    else if (!ClickDetection.shieldActive && shieldDebounce)
-    //    {
-    //        shieldDebounce = false;
-    //    }
+        //Check if ClickDetection has a shieldActive variable
+        if (switchesActive[4] && !shieldDebounce)
+       {
+           ShieldActivate();
+           shieldDebounce = true;
+       }
+       else if (!switchesActive[4] && shieldDebounce)
+       {
+           shieldDebounce = false;
+       }
     }
 
-  //  public bool GetShield()
-  //  {
-  //      return ClickDetection.shieldActive;
-  //  }
+   public bool GetShield()
+   {
+       return switchesActive[4];
+   }
 
-  //  void ShieldActivate()
-  //  {
-  //      ClickDetection.shieldActive = !ClickDetection.shieldActive;
-  //      moveSpeed = ClickDetection.shieldActive ? 500f : 1000f; // Adjust speed when shield is active
-  //  }
+   void ShieldActivate()
+   {
+       moveSpeed = ClickDetection.shieldActive ? 500f : 1000f; // Adjust speed when shield is active
+   }
 
     void HandleBlackHole()
     {
