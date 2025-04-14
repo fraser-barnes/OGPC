@@ -8,6 +8,7 @@ public class ClickDetection : MonoBehaviour
 
     [SerializeField]
     private GameObject[] switches;
+    private int i;
 
     void Update()
     {
@@ -18,57 +19,49 @@ public class ClickDetection : MonoBehaviour
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
             {
 
-                Debug.Log("Clicked object: " + hit.transform.gameObject.name);
-
                 if (hit.collider.gameObject.CompareTag("ShieldsSwitch"))
                 {
-                    switchesActive[4] = !switchesActive[4];
+                    i = 4;
                 }
-
                 else if (hit.collider.gameObject.CompareTag("RadarSwitch"))
                 {
-                    switchesActive[7] = !switchesActive[7];
+                    i = 7;
                 }
-
                 else if (hit.collider.gameObject.CompareTag("CourseHelperSwitch"))
                 {
-                    switchesActive[5] = !switchesActive[5];
+                    i = 5;
                 }
-
                 else if (hit.collider.gameObject.CompareTag("BlastersSwitch"))
                 {
-                    switchesActive[2] = !switchesActive[2];
+                    i = 2;
                 }
-
                 else if (hit.collider.gameObject.CompareTag("HeatingSwitch"))
                 {
-                    switchesActive[9] = !switchesActive[9];
+                    i = 9;
                 }
-
                 else if (hit.collider.gameObject.CompareTag("SteeringSwitch"))
                 {
-                    switchesActive[1] = !switchesActive[1];
+                    i = 1;
                 }
-
                 else if (hit.collider.gameObject.CompareTag("RepairSwitch"))
                 {
-                    switchesActive[6] = !switchesActive[6];
+                    i = 6;
                 }
-
                 else if (hit.collider.gameObject.CompareTag("LightSwitch"))
                 {
-                    switchesActive[0] = !switchesActive[0];
+                    i = 0;
                 }
-
                 else if (hit.collider.gameObject.CompareTag("ThrustSwitch"))
                 {
-                    switchesActive[3] = !switchesActive[3];
+                    i = 3;
                 }
-
                 else if (hit.collider.gameObject.CompareTag("WindowWipersSwitch"))
                 {
-                    switchesActive[8] = !switchesActive[8];
+                    i = 8;
                 }
+                switchesActive[i] = !switchesActive[i];
+                switches[i].transform.localScale = new Vector3(110f, switches[i].transform.localScale.y * -1f, 110f);
+                switches[i].transform.rotation = Quaternion.Euler(0, switches[i].transform.rotation.y + 180f, 0);
             }
         }
     }
