@@ -17,6 +17,7 @@ TagManager:
   - WindowWipersSwitch
   - FlashlightSwitch
   - RepairSwitch
+  - LightSwitch
   layers:
   - Default
   - TransparentFX
