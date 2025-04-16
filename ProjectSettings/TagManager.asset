@@ -18,6 +18,7 @@ TagManager:
   - FlashlightSwitch
   - RepairSwitch
   - LightSwitch
+  - Blaster
   layers:
   - Default
   - TransparentFX
