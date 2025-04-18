@@ -16,7 +16,7 @@ public class ClickDetection : MonoBehaviour
         {
             RaycastHit hit;
 
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 500f, LayerMask.GetMask("Switches")))
             {
 
                 if (hit.collider.gameObject.CompareTag("ShieldsSwitch"))
@@ -47,7 +47,7 @@ public class ClickDetection : MonoBehaviour
                 {
                     i = 6;
                 }
-                else if (hit.collider.gameObject.CompareTag("LightSwitch"))
+                else if (hit.collider.gameObject.CompareTag("FlashlightSwitch"))
                 {
                     i = 0;
                 }
@@ -59,9 +59,10 @@ public class ClickDetection : MonoBehaviour
                 {
                     i = 8;
                 }
+                Debug.Log(i);
                 switchesActive[i] = !switchesActive[i];
-                switches[i].transform.localScale = new Vector3(110f, switches[i].transform.localScale.y * -1f, 110f);
-                switches[i].transform.rotation = Quaternion.Euler(0, switches[i].transform.rotation.y + 180f, 0);
+                switches[i].SetActive(!switches[i].activeSelf);
+                switches[i+10].SetActive(!switches[i+10].activeSelf);
             }
         }
     }

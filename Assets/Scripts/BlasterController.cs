@@ -18,8 +18,7 @@ public class BlasterController : MonoBehaviour
 
     void Update()
     {
-            //Camera.main.GetComponent<ClickDetection>().switchesActive[2]
-        if (Input.GetKeyDown(KeyCode.Space)) // Fire when spacebar is pressed
+        if (Input.GetKeyDown(KeyCode.Space) && Camera.main.GetComponent<ClickDetection>().switchesActive[2]) // Fire when spacebar is pressed and switch is on
         {
             FireBlaster();
         }
