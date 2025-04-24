@@ -1,2 +1,2 @@
-/Users/zachgoldwyn/OGPC/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp/CMakeLists.txt
-/Users/zachgoldwyn/OGPC/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp/GameActivity/CMakeLists.txt
+/Users/zachgoldwyn/OGPC/Library/PramData/AndroidApplicationController/Cache/com.UnityTechnologies.com.unity.template.urpblank/gradle-project/unityLibrary/src/main/cpp/CMakeLists.txt
+/Users/zachgoldwyn/OGPC/Library/PramData/AndroidApplicationController/Cache/com.UnityTechnologies.com.unity.template.urpblank/gradle-project/unityLibrary/src/main/cpp/GameActivity/CMakeLists.txt
