@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using OVR;
 
 public class SpaceshipController : MonoBehaviour
 {
@@ -24,6 +25,9 @@ public class SpaceshipController : MonoBehaviour
     private Camera cam;
     private bool[] switchesActive;
 
+    private OVRCameraRig cameraRig;
+    public OVRInput.Controller controllerType = OVRInput.Controller.LTouch;
+
     void Start()
     {
         if (mover == null || spaceship == null)
@@ -31,6 +35,12 @@ public class SpaceshipController : MonoBehaviour
             Debug.LogError("Please assign the mover and spaceship objects.");
             enabled = false;
             return;
+        }
+
+        cameraRig = GetComponent<OVRCameraRig>();
+        if (cameraRig == null)
+        {
+            Debug.LogError("OVRCameraRig not found!");
         }
 
         // Spawn the black hole at a random or predefined position
@@ -74,27 +84,27 @@ public class SpaceshipController : MonoBehaviour
 
         switchesActive = cam.GetComponent<ClickDetection>().switchesActive;
 
-        //Check if ClickDetection has a shieldActive variable
+        // Check if ClickDetection has a shieldActive variable
         if (switchesActive[4] && !shieldDebounce)
-       {
-           ShieldActivate();
-           shieldDebounce = true;
-       }
-       else if (!switchesActive[4] && shieldDebounce)
-       {
-           shieldDebounce = false;
-       }
+        {
+            ShieldActivate();
+            shieldDebounce = true;
+        }
+        else if (!switchesActive[4] && shieldDebounce)
+        {
+            shieldDebounce = false;
+        }
     }
 
-   public bool GetShield()
-   {
-       return switchesActive[4];
-   }
+    public bool GetShield()
+    {
+        return switchesActive[4];
+    }
 
-   void ShieldActivate()
-   {
-       moveSpeed = switchesActive[4] ? 500f : 1000f; // Adjust speed when shield is active
-   }
+    void ShieldActivate()
+    {
+        moveSpeed = switchesActive[4] ? 500f : 1000f; // Adjust speed when shield is active
+    }
 
     void HandleBlackHole()
     {
@@ -106,7 +116,7 @@ public class SpaceshipController : MonoBehaviour
 
     void HandleMoverInput()
     {
-        Vector2 input = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
+        Vector2 input = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, controllerType);
         if (input == Vector2.zero)
         {
             input.x = -Input.GetAxis("Horizontal");
@@ -133,15 +143,17 @@ public class SpaceshipController : MonoBehaviour
 
     void HandleThrust()
     {
-        Vector3 localOffset = spaceship.InverseTransformPoint(mover.transform.position) - initialMoverPositionLocal;
-        float thrustX = 0f, thrustZ = 0f;
+        Vector2 controllerInput = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, controllerType);
+        
+        float thrustX = Input.GetAxis("Vertical");
+        float thrustZ = Input.GetAxis("Horizontal");
 
-        if (Input.GetKey(KeyCode.W)) thrustX = 1f;
-        if (Input.GetKey(KeyCode.S)) thrustX = -1f;
-        if (Input.GetKey(KeyCode.A)) thrustZ = 1f;
-        if (Input.GetKey(KeyCode.D)) thrustZ = -1f;
+        Vector3 thrustDirection = new Vector3(
+            controllerInput.y + thrustX,
+            0,
+            controllerInput.x + thrustZ
+        );
 
-        Vector3 thrustDirection = new Vector3(localOffset.x + thrustX, 0, localOffset.z + thrustZ);
         Vector3 worldMovement = spaceship.TransformDirection(thrustDirection);
         spaceship.position += worldMovement * moveSpeed * Time.deltaTime;
 
@@ -156,13 +168,10 @@ public class SpaceshipController : MonoBehaviour
 
     void HandleRotation()
     {
-        Vector2 rotationInput = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
-        Vector3 rotation = new Vector3(0, rotationInput.x * rotationSpeed * Time.deltaTime, 0);
+        Vector2 rotationInput = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, controllerType);
+        float rotY = Input.GetAxis("Mouse X");
 
-        if (Input.GetKey(KeyCode.DownArrow)) rotation.z -= rotationSpeed * Time.deltaTime;
-        if (Input.GetKey(KeyCode.UpArrow)) rotation.z += rotationSpeed * Time.deltaTime;
-        if (Input.GetKey(KeyCode.LeftArrow)) rotation.y -= rotationSpeed * Time.deltaTime;
-        if (Input.GetKey(KeyCode.RightArrow)) rotation.y += rotationSpeed * Time.deltaTime;
+        Vector3 rotation = new Vector3(0, rotationInput.x * rotationSpeed * Time.deltaTime, 0);
 
         spaceship.Rotate(rotation, Space.Self);
     }
