@@ -5,7 +5,7 @@ public class Start_Game : MonoBehaviour
     public string levelName;
 
     public void LoadLevel(){
-        if (levelName.equals("Quit")){
+        if (levelName.Equals("Quit")){
             Application.Quit();
         }
         else{
