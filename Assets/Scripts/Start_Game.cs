@@ -5,11 +5,6 @@ public class Start_Game : MonoBehaviour
     public string levelName;
 
     public void LoadLevel(){
-        if (levelName.Equals("Quit")){
-            Application.Quit();
-        }
-        else{
-            SceneManager.LoadScene(levelName);
-        }
+        SceneManager.LoadScene(levelName);
     }
 }
