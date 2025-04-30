@@ -1583,7 +1583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: 5817f7c0-f2a5-45f9-a5ca-64264e0166e8
-  instanceId: 289123e6-9d4f-46bb-9e9a-ceeab7e0dcd7
+  instanceId: 5ed445ad-279a-42af-a998-7300f5854b8e
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: 
@@ -11387,7 +11387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: 5817f7c0-f2a5-45f9-a5ca-64264e0166e8
-  instanceId: 6d121651-b689-42a3-b1f1-4c1a27d7c9fa
+  instanceId: 891438e3-9df7-4bf5-95c2-73995b529947
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: 
@@ -13451,7 +13451,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: m_Name
-      value: Ship
+      value: ShipPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 82a3d002462339f48882e9875352d953, type: 3}
       propertyPath: m_TagString
@@ -13637,9 +13637,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 82a3d002462339f48882e9875352d953, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2247751873043954167}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 82a3d002462339f48882e9875352d953, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 504453718866965153}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 82a3d002462339f48882e9875352d953, type: 3}
       insertIndex: -1
@@ -13745,91 +13742,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 82a3d002462339f48882e9875352d953, type: 3}
   m_PrefabInstance: {fileID: 474910554518835029}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2247751873043954167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 744872346801730052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2ea522f1df8641e099b9a0c512b66ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  asteroidArr:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  asteroidSpeedMin: 50
-  asteroidSpeedMax: 150
-  despawnDistance: 15000
-  shipDistanceThreshold: 18000
 --- !u!114 &504453718866965153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14832,7 +14744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: e47682b9-c270-40b1-b16d-90b627a5ce1b
-  instanceId: 24b9bdef-c756-4d41-aea4-332c1384480d
+  instanceId: 38c3d468-cc26-4086-a6c6-27dc0d95ba6a
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: 
