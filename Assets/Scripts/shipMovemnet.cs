@@ -26,7 +26,8 @@ public class SpaceshipController : MonoBehaviour
     private bool[] switchesActive;
 
     private OVRCameraRig cameraRig;
-    public OVRInput.Controller controllerType = OVRInput.Controller.LTouch;
+    public OVRInput.Controller controllerL = OVRInput.Controller.LTouch;
+    public OVRInput.Controller controllerR = OVRInput.Controller.RTouch;
 
     void Start()
     {
@@ -116,7 +117,7 @@ public class SpaceshipController : MonoBehaviour
 
     void HandleMoverInput()
     {
-        Vector2 input = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, controllerType);
+        Vector2 input = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, controllerL);
         if (input == Vector2.zero)
         {
             input.x = -Input.GetAxis("Horizontal");
@@ -127,7 +128,7 @@ public class SpaceshipController : MonoBehaviour
         float forwardMovementZ = input.y / Mathf.Cos(deskAngleRadians);
         float upwardMovementY = input.y * Mathf.Tan(deskAngleRadians);
 
-        Vector3 localMovement = new Vector3(forwardMovementZ, upwardMovementY, input.x) * moverSensitivity * Time.deltaTime;
+        Vector3 localMovement = new Vector3(forwardMovementZ, upwardMovementY, -input.x) * moverSensitivity * Time.deltaTime;
         Vector3 worldMovement = spaceship.TransformDirection(localMovement);
         mover.transform.position += worldMovement;
 
@@ -143,15 +144,15 @@ public class SpaceshipController : MonoBehaviour
 
     void HandleThrust()
     {
-        Vector2 controllerInput = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, controllerType);
-        
-        float thrustX = Input.GetAxis("Vertical");
+        Vector2 controllerInput = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick, controllerR);
+
+        float thrustX = -Input.GetAxis("Vertical");
         float thrustZ = Input.GetAxis("Horizontal");
 
         Vector3 thrustDirection = new Vector3(
-            controllerInput.y + thrustX,
             0,
-            controllerInput.x + thrustZ
+            0,
+            Mathf.Abs(controllerInput.y) > 0.1f ? controllerInput.y : thrustX
         );
 
         Vector3 worldMovement = spaceship.TransformDirection(thrustDirection);
@@ -168,7 +169,7 @@ public class SpaceshipController : MonoBehaviour
 
     void HandleRotation()
     {
-        Vector2 rotationInput = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, controllerType);
+        Vector2 rotationInput = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, controllerR);
         float rotY = Input.GetAxis("Mouse X");
 
         Vector3 rotation = new Vector3(0, rotationInput.x * rotationSpeed * Time.deltaTime, 0);
