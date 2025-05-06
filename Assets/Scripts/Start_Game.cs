@@ -4,7 +4,11 @@ public class Start_Game : MonoBehaviour
 {
     public string levelName;
 
-    public void LoadLevel(){
+    public void WaitThenLoad() {
+        StartCoroutine(LoadLevel());
+    }
+
+    IEnumerator LoadLevel(){
         SceneManager.LoadScene(levelName);
     }
 }
