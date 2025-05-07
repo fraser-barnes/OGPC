@@ -1,4 +1,5 @@
 using UnityEngine;
+using OVR;
 
 public class BlasterController : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class BlasterController : MonoBehaviour
     // Reference to the ship's Rigidbody for velocity
     public Rigidbody shipRigidbody;
 
+    public OVRInput.Controller controllerR = OVRInput.Controller.RTouch;
+
     // New serializable variable to adjust the firing angle relative to the ship
     [Header("Firing Angle Settings")]
     [Range(-90f, 90f)]
@@ -18,10 +21,10 @@ public class BlasterController : MonoBehaviour
 
     void Update()
     {
-//        if (Input.GetKeyDown(KeyCode.Space) && Camera.main.GetComponent<ClickDetection>().switchesActive[2]) // Fire when spacebar is pressed and switch is on
-//        {
-//            FireBlaster();
-//        }
+        if (Input.GetKeyDown(KeyCode.Space) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger, controllerR) && Camera.main.GetComponent<ClickDetection>().switchesActive[2]) // Fire when spacebar is pressed and switch is on
+        {
+            FireBlaster();
+        }
     }
 
     void FireBlaster()

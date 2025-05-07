@@ -149,11 +149,7 @@ public class SpaceshipController : MonoBehaviour
         float thrustX = -Input.GetAxis("Vertical");
         float thrustZ = Input.GetAxis("Horizontal");
 
-        Vector3 thrustDirection = new Vector3(
-            0,
-            0,
-            Mathf.Abs(controllerInput.y) > 0.1f ? controllerInput.y : thrustX
-        );
+        Vector3 thrustDirection = new Vector3(Mathf.Abs(controllerInput.y) > 0.1f ? controllerInput.y : Input.GetAxis("Vertical"), 0, 0);
 
         Vector3 worldMovement = spaceship.TransformDirection(thrustDirection);
         spaceship.position += worldMovement * moveSpeed * Time.deltaTime;
