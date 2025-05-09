@@ -7,6 +7,14 @@ public class SpaceshipController : MonoBehaviour
     public GameObject mover; // The orb object
     public float moveSpeed = 1000f; // Doubled movement speed
     public float rotationSpeed = 100f; // Increased rotation speed
+    public float maxPitchAngle = 80f;
+    private float currentPitch = 0f;
+
+    public float barrelRollSpeed = 360f; // Degrees per second for the barrel roll
+    private bool isRolling = false;
+    private float rollDirection = 0f;
+    private float remainingRollAngle = 0f;
+
     public Transform spaceship; // Reference to the spaceship transform
     public float moverSensitivity = 2f; // Sensitivity for mover input
     public float snapBackSpeed = 5f; // Speed at which the mover snaps back
@@ -95,6 +103,8 @@ public class SpaceshipController : MonoBehaviour
         {
             shieldDebounce = false;
         }
+
+        HandleBarrelRoll();
     }
 
     public bool GetShield()
@@ -162,14 +172,68 @@ public class SpaceshipController : MonoBehaviour
 
         mover.transform.position = spaceship.TransformPoint(snappedLocalPosition);
     }
-
+    
     void HandleRotation()
     {
+        // Get the thumbstick input
         Vector2 rotationInput = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, controllerR);
-        float rotY = Input.GetAxis("Mouse X");
 
-        Vector3 rotation = new Vector3(0, rotationInput.x * rotationSpeed * Time.deltaTime, 0);
+        // Get yaw (horizontal thumbstick movement)
+        float yaw = rotationInput.x * rotationSpeed * Time.deltaTime;
 
-        spaceship.Rotate(rotation, Space.Self);
+        // Get pitch (vertical thumbstick movement, inverted because forward is usually negative)
+        float pitchInput = -rotationInput.y;
+        float pitchDelta = pitchInput * rotationSpeed * Time.deltaTime;
+
+        // Calculate the new pitch without exceeding limits
+        float newPitch = Mathf.Clamp(currentPitch + pitchDelta, -maxPitchAngle, maxPitchAngle);
+        float actualPitchDelta = newPitch - currentPitch;
+
+        // Apply pitch rotation around local X axis
+        spaceship.Rotate(Vector3.back * actualPitchDelta, Space.Self);
+
+        // Apply yaw rotation around local Y axis
+        spaceship.Rotate(Vector3.up * yaw, Space.Self);
+
+        // Update current pitch
+        currentPitch = newPitch;
+    }
+
+    void HandleBarrelRoll()
+    {
+        // Start a barrel roll when clicking the right or left joystick
+        if (!isRolling)
+        {
+            if (OVRInput.GetDown(OVRInput.Button.SecondaryThumbstick))
+            {
+                isRolling = true;
+                rollDirection = -1f; // Right roll
+                remainingRollAngle = 360f;
+            }
+            else if (OVRInput.GetDown(OVRInput.Button.PrimaryThumbstick))
+            {
+                isRolling = true;
+                rollDirection = 1f; // Left roll
+                remainingRollAngle = 360f;
+            }
+        }
+
+        if (isRolling)
+        {
+            float deltaRoll = barrelRollSpeed * Time.deltaTime;
+            if (deltaRoll > remainingRollAngle)
+            {
+                deltaRoll = remainingRollAngle;
+            }
+
+            spaceship.Rotate(Vector3.right * rollDirection * deltaRoll, Space.Self);
+            remainingRollAngle -= deltaRoll;
+
+            if (remainingRollAngle <= 0f)
+            {
+                isRolling = false;
+                rollDirection = 0f;
+            }
+        }
     }
 }
