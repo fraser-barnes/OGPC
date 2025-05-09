@@ -8,8 +8,6 @@ public class SpaceshipController : MonoBehaviour
     public float moveSpeed = 1000f; // Doubled movement speed
     public float rotationSpeed = 100f; // Increased rotation speed
     public float maxPitchAngle = 80f;
-    private float currentPitch = 0f;
-
     public float barrelRollSpeed = 360f; // Degrees per second for the barrel roll
     private bool isRolling = false;
     private float rollDirection = 0f;
@@ -183,20 +181,15 @@ public class SpaceshipController : MonoBehaviour
 
         // Get pitch (vertical thumbstick movement, inverted because forward is usually negative)
         float pitchInput = -rotationInput.y;
-        float pitchDelta = pitchInput * rotationSpeed * Time.deltaTime;
-
-        // Calculate the new pitch without exceeding limits
-        float newPitch = Mathf.Clamp(currentPitch + pitchDelta, -maxPitchAngle, maxPitchAngle);
-        float actualPitchDelta = newPitch - currentPitch;
+        float pitchDelta = pitchInput * rotationSpeed * Time.deltaTime;        
 
         // Apply pitch rotation around local X axis
-        spaceship.Rotate(Vector3.back * actualPitchDelta, Space.Self);
+        spaceship.Rotate(Vector3.back * pitchDelta, Space.Self);
 
         // Apply yaw rotation around local Y axis
         spaceship.Rotate(Vector3.up * yaw, Space.Self);
 
-        // Update current pitch
-        currentPitch = newPitch;
+
     }
 
     void HandleBarrelRoll()
