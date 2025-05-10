@@ -55,6 +55,7 @@ public class Start_Game : MonoBehaviour
 
     IEnumerator LoadLevel() {
         closeEyes.Play("CloseEyes");
+        GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(5);
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(levelName);
         while (!asyncLoad.isDone)
