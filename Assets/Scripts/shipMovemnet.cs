@@ -105,7 +105,7 @@ public class SpaceshipController : MonoBehaviour
     {
         Vector3 direction = (targetPosition - transform.position).normalized;
         float distance = Mathf.Max(Vector3.Distance(transform.position, targetPosition), 0.01f); // Avoid division by zero
-        float gravityForce = 2000000f / distance; // Increased pull force
+        float gravityForce = 20000000f / distance; // Increased pull force
         transform.position += direction * gravityForce * Time.deltaTime;
     }
 

@@ -538,6 +538,10 @@ PrefabInstance:
       propertyPath: blackHole
       value: 
       objectReference: {fileID: 1356592892}
+    - target: {fileID: 8031363431579981109, guid: b64031f88153f6f418e09541cf0c326f, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 297306251}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 4648151029167886069, guid: b64031f88153f6f418e09541cf0c326f, type: 3}
