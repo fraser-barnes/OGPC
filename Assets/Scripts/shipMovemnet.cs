@@ -35,6 +35,8 @@ public class SpaceshipController : MonoBehaviour
     public OVRInput.Controller controllerL = OVRInput.Controller.LTouch;
     public OVRInput.Controller controllerR = OVRInput.Controller.RTouch;
 
+    private bool blackHoleInScene;
+
     void Start()
     {
         if (mover == null || spaceship == null)
@@ -53,33 +55,16 @@ public class SpaceshipController : MonoBehaviour
         // Spawn the black hole at a random or predefined position
         negativeSign = Random.Range(1, 3);
 
-        if (SceneManager.GetActiveScene().buildIndex == 0)
-        {
-            blackHoleStartX = 5000;
-            blackHoleStartY = 5000;
-            blackHoleStartZ = 5000;
-        }
-        else if (negativeSign == 1)
-        {
-            blackHoleStartX = Random.Range(25000, 35000);
-            blackHoleStartY = Random.Range(25000, 35000);
-            blackHoleStartZ = Random.Range(25000, 35000);
-        }
-        else
-        {
-            blackHoleStartX = -Random.Range(25000, 35000);
-            blackHoleStartY = -Random.Range(25000, 35000);
-            blackHoleStartZ = -Random.Range(25000, 35000);
-        }
-
-        blackHole.transform.position = new Vector3(blackHoleStartX, blackHoleStartY, blackHoleStartZ);
-
         // Store the initial local position of the mover
         initialMoverPositionLocal = spaceship.InverseTransformPoint(mover.transform.position);
         targetPosition = blackHole.transform.position;
         moveDirection = (targetPosition - transform.position).normalized;
 
         cam = Camera.main;
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+            blackHoleInScene = true;
+        else
+            blackHoleInScene = false;
     }
 
     void Update()
@@ -87,7 +72,8 @@ public class SpaceshipController : MonoBehaviour
         HandleMoverInput();
         HandleThrust();
         HandleRotation();
-        HandleBlackHole();
+        if (blackHoleInScene)
+            HandleBlackHole();
 
         switchesActive = cam.GetComponent<ClickDetection>().switchesActive;
 
