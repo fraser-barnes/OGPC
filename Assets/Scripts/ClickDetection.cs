@@ -29,11 +29,28 @@ public class ClickDetection : MonoBehaviour
         RaycastHit hit;
         rayRenderer.SetPosition(0, rayOrigin);
 
-        if (Physics.Raycast(rayOrigin, rayDirection, out hit, 100f, switchLayer))
+        if (Physics.Raycast(rayOrigin, rayDirection, out hit, 900f, switchLayer))
         {
+            Debug.Log("Hit: " + hit.collider.name);
             rayRenderer.SetPosition(1, hit.point);
-            hitMarker.transform.position = hit.point;
-            hitMarker.SetActive(true);
+
+            if (hitMarker != null)
+            {
+                hitMarker.transform.position = hit.point;
+
+                Renderer markerRenderer = hitMarker.GetComponent<Renderer>();
+                if (markerRenderer != null)
+                {
+                    markerRenderer.material.color = Color.green;
+                }
+
+                hitMarker.transform.localScale = Vector3.one * 5f;
+                hitMarker.SetActive(true);
+            }
+            else
+            {
+                Debug.LogWarning("HitMarker GameObject not assigned.");
+            }
 
             if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, controllerR))
             {
@@ -60,7 +77,24 @@ public class ClickDetection : MonoBehaviour
         else
         {
             rayRenderer.SetPosition(1, rayOrigin + rayDirection * 100f);
-            hitMarker.SetActive(false);
+
+            if (hitMarker != null)
+            {
+                hitMarker.transform.position = rayOrigin + rayDirection * 50f;
+
+                Renderer markerRenderer = hitMarker.GetComponent<Renderer>();
+                if (markerRenderer != null)
+                {
+                    markerRenderer.material.color = Color.red;
+                }
+
+                hitMarker.transform.localScale = Vector3.one * 3f;
+                hitMarker.SetActive(true);
+            }
+            else
+            {
+                Debug.LogWarning("HitMarker GameObject not assigned.");
+            }
         }
     }
 

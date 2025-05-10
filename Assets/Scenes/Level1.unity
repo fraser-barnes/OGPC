@@ -8696,7 +8696,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 181b1148c5d019a478a1bf92d7e10a6f, type: 2}
+  - {fileID: 2100000, guid: e22cbdc81a4db4189a186f72c17688f3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8736,7 +8736,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 936, y: 568.1, z: -1014.1}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -16125,6 +16125,14 @@ PrefabInstance:
       propertyPath: resetTrackerOnLoad
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6822269040545139775, guid: b64031f88153f6f418e09541cf0c326f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822269040545139775, guid: b64031f88153f6f418e09541cf0c326f, type: 3}
+      propertyPath: m_TagString
+      value: LightSwitch
+      objectReference: {fileID: 0}
     - target: {fileID: 7211786690787122552, guid: b64031f88153f6f418e09541cf0c326f, type: 3}
       propertyPath: hitMarker
       value: 
@@ -16137,6 +16145,10 @@ PrefabInstance:
       propertyPath: rightHandAnchor
       value: 
       objectReference: {fileID: 1499567470}
+    - target: {fileID: 7211786690787122552, guid: b64031f88153f6f418e09541cf0c326f, type: 3}
+      propertyPath: switchLayer.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 7476434409637124217, guid: b64031f88153f6f418e09541cf0c326f, type: 3}
       propertyPath: blackHole
       value: 
@@ -16149,6 +16161,14 @@ PrefabInstance:
       propertyPath: blasterPrefab
       value: 
       objectReference: {fileID: 1804315903}
+    - target: {fileID: 8409160993163924633, guid: b64031f88153f6f418e09541cf0c326f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8409160993163924633, guid: b64031f88153f6f418e09541cf0c326f, type: 3}
+      propertyPath: m_TagString
+      value: LightSwitch
+      objectReference: {fileID: 0}
     - target: {fileID: 8948706345209202275, guid: b64031f88153f6f418e09541cf0c326f, type: 3}
       propertyPath: m_Enabled
       value: 0
