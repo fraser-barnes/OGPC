@@ -64,7 +64,7 @@ public class ClickDetection : MonoBehaviour
                 else if (tag == "HeatingSwitch") i = 9;
                 else if (tag == "SteeringSwitch") i = 1;
                 else if (tag == "RepairSwitch") i = 6;
-                else if (tag == "FlashlightSwitch") i = 0;
+                else if (tag == "LightSwitch") i = 0;
                 else if (tag == "ThrustSwitch") i = 3;
                 else if (tag == "WindowWipersSwitch") i = 8;
                 else return;
