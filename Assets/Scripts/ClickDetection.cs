@@ -29,7 +29,7 @@ public class ClickDetection : MonoBehaviour
         RaycastHit hit;
         rayRenderer.SetPosition(0, rayOrigin);
 
-        if (Physics.Raycast(rayOrigin, rayDirection, out hit, 700f, switchLayer))
+        if (Physics.Raycast(rayOrigin, rayDirection, out hit, 900f, switchLayer))
         {
             Debug.Log("Hit: " + hit.collider.name);
             rayRenderer.SetPosition(1, hit.point);
